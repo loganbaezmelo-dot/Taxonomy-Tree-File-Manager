@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taxonomy Explorer - Find Homo Sapiens</title>
+  <style>
+    :root {
+      --bg-color: #1e1e2e;
+      --panel-bg: #181825;
+      --item-hover: #313244;
+      --text-main: #cdd6f4;
+      --text-muted: #a6adc8;
+      --accent: #89b4fa;
+      --win-color: #a6e3a1;
+      --folder-color: #f9e2af;
+      --file-color: #89dceb;
+      --danger: #f38ba8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .window {
+      width: 100%;
+      max-width: 900px;
+      height: 600px;
+      background-color: var(--panel-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #313244;
+    }
+
+    .titlebar {
+      background-color: #11111b;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #313244;
+    }
+
+    .titlebar-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot.red { background: var(--danger); }
+    .dot.yellow { background: var(--folder-color); }
+    .dot.green { background: var(--win-color); }
+
+    .nav-bar {
+      padding: 10px 16px;
+      background-color: #181825;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #313244;
+    }
+
+    .nav-btn {
+      background: #313244;
+      border: none;
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #11111b;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #11111b;
+      padding: 6px 14px;
+      border-radius: 6px;
+      flex-grow: 1;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .content-area {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-auto-rows: max-content;
+      gap: 16px;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .item:hover {
+      background-color: var(--item-hover);
+      transform: translateY(-2px);
+    }
+
+    .item-icon {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    .item-name {
+      font-size: 0.85rem;
+      color: var(--text-main);
+      word-break: break-word;
+      line-height: 1.2;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      padding: 24px;
+      text-align: center;
+      animation: pop 0.25s ease-out;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      color: var(--win-color);
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      background: #11111b;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      color: var(--text-main);
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+    }
+
+    .close-btn {
+      background: var(--win-color);
+      color: #11111b;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="window">
+    <div class="titlebar">
+      <div class="titlebar-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-muted);">Root Explorer - Locate Homo sapiens</div>
+      <div></div>
+    </div>
+
+    <div class="nav-bar">
+      <button id="backBtn" class="nav-btn" disabled>← Up</button>
+      <div id="breadcrumb" class="breadcrumb">📁 Root</div>
+    </div>
+
+    <div id="fileGrid" class="content-area"></div>
+  </div>
+
+  <div id="winModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-title">🎉 YOU FOUND IT! 🎉</div>
+      <div id="fileContent" class="modal-body"></div>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const taxonomyData = {
+      name: "Root",
+      type: "folder",
+      children: [
+        {
+          name: "Kingdom Animalia",
+          type: "folder",
+          children: [
+            {
+              name: "Phylum Chordata",
+              type: "folder",
+              children: [
+                {
+                  name: "Class Mammalia",
+                  type: "folder",
+                  children: [
+                    {
+                      name: "Order Primates",
+                      type: "folder",
+                      children: [
+                        {
+                          name: "Family Hominidae",
+                          type: "folder",
+                          children: [
+                            {
+                              name: "Genus Homo",
+                              type: "folder",
+                              children: [
+                                {
+                                  name: "Species Homo sapiens",
+                                  type: "folder",
+                                  children: [
+                                    {
+                                      name: "human.txt",
+                                      type: "file",
+                                      content: "YOU WIN! 💀\n\nTaxonomic Path:\nDomain: Eukaryota\nKingdom: Animalia\nPhylum: Chordata\nClass: Mammalia\nOrder: Primates\nFamily: Hominidae\nGenus: Homo\nSpecies: Homo sapiens\n\nCongrats on navigating the entire hierarchy!"
+                                    }
+                                  ]
+                                },
+                                {
+                                  name: "Species Homo neanderthalensis",
+                                  type: "folder",
+                                  children: [
+                                    { name: "neanderthal.txt", type: "file", content: "Extinct hominid. Not quite human.txt 💀" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Genus Pan",
+                              type: "folder",
+                              children: [
+                                {
+                                  name: "Species Pan troglodytes",
+                                  type: "folder",
+                                  children: [{ name: "chimp.txt", type: "file", content: "Chimpanzee folder. Close, but not Homo sapiens 💀" }]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Lemuridae",
+                          type: "folder",
+                          children: [{ name: "lemur.txt", type: "file", content: "Just a ring-tailed lemur chilling here." }]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Carnivora",
+                      type: "folder",
+                      children: [
+                        {
+                          name: "Family Felidae",
+                          type: "folder",
+                          children: [
+                            {
+                              name: "Genus Panthera",
+                              type: "folder",
+                              children: [
+                                { name: "Species Panthera leo", type: "folder", children: [{ name: "lion.txt", type: "file", content: "Roar! Dead end 💀" }] }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Canidae",
+                          type: "folder",
+                          children: [
+                            {
+                              name: "Genus Canis",
+                              type: "folder",
+                              children: [
+                                { name: "Species Canis lupus", type: "folder", children: [{ name: "wolf.txt", type: "file", content: "Wolf territory." }] }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Rodentia",
+                      type: "folder",
+                      children: [
+                        { name: "Family Muridae", type: "folder", children: [{ name: "mouse.txt", type: "file", content: "Squeak!" }] }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Class Aves",
+                  type: "folder",
+                  children: [
+                    { name: "Order Passeriformes", type: "folder", children: [{ name: "sparrow.txt", type: "file", content: "Birds only!" }] }
+                  ]
+                },
+                {
+                  name: "Class Reptilia",
+                  type: "folder",
+                  children: [
+                    { name: "Order Squamata", type: "folder", children: [{ name: "gecko.txt", type: "file", content: "Cold blooded path." }] }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Phylum Arthropoda",
+              type: "folder",
+              children: [
+                {
+                  name: "Class Insecta",
+                  type: "folder",
+                  children: [
+                    { name: "Order Coleoptera", type: "folder", children: [{ name: "beetle.txt", type: "file", content: "Beetle bug!" }] }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Kingdom Plantae",
+          type: "folder",
+          children: [
+            {
+              name: "Phylum Tracheophyta",
+              type: "folder",
+              children: [
+                {
+                  name: "Class Magnoliopsida",
+                  type: "folder",
+                  children: [
+                    { name: "Order Rosales", type: "folder", children: [{ name: "rose.txt", type: "file", content: "Wrong kingdom entirely 💀" }] }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Kingdom Fungi",
+          type: "folder",
+          children: [
+            {
+              name: "Phylum Basidiomycota",
+              type: "folder",
+              children: [
+                { name: "mushroom.txt", type: "file", content: "Mushrooms, not humans 💀" }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    let pathStack = [taxonomyData];
+
+    const fileGrid = document.getElementById("fileGrid");
+    const breadcrumb = document.getElementById("breadcrumb");
+    const backBtn = document.getElementById("backBtn");
+    const winModal = document.getElementById("winModal");
+    const fileContent = document.getElementById("fileContent");
+
+    function renderCurrentFolder() {
+      const currentFolder = pathStack[pathStack.length - 1];
+      fileGrid.innerHTML = "";
+
+      // Update Breadcrumbs & Nav
+      breadcrumb.innerText = pathStack.map(p => p.name).join(" / ");
+      backBtn.disabled = pathStack.length <= 1;
+
+      if (!currentFolder.children || currentFolder.children.length === 0) {
+        fileGrid.innerHTML = `<div style="grid-column: 1/-1; color: var(--text-muted); text-align: center; padding: 40px;">(Empty Folder)</div>`;
+        return;
+      }
+
+      currentFolder.children.forEach(item => {
+        const el = document.createElement("div");
+        el.className = "item";
+
+        const icon = item.type === "folder" ? "📁" : "📄";
+        el.innerHTML = `
+          <div class="item-icon">${icon}</div>
+          <div class="item-name">${item.name}</div>
+        `;
+
+        el.addEventListener("click", () => {
+          if (item.type === "folder") {
+            pathStack.push(item);
+            renderCurrentFolder();
+          } else if (item.type === "file") {
+            openFile(item);
+          }
+        });
+
+        fileGrid.appendChild(el);
+      });
+    }
+
+    function openFile(file) {
+      fileContent.innerText = file.content;
+      winModal.classList.add("active");
+    }
+
+    function closeModal() {
+      winModal.classList.remove("active");
+    }
+
+    backBtn.addEventListener("click", () => {
+      if (pathStack.length > 1) {
+        pathStack.pop();
+        renderCurrentFolder();
+      }
+    });
+
+    renderCurrentFolder();
+  </script>
+</body>
+</html>
