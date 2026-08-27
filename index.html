@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxonomy Explorer - Hardcore Nightmare Edition</title>
+  <title>Taxonomy Explorer - The Ultimate Mega Tree</title>
   <style>
     :root {
-      --bg: #0d0e15;
-      --panel: #141622;
-      --hover: #222638;
+      --bg: #090a0f;
+      --panel: #11131c;
+      --hover: #1c2030;
       --text: #cdd6f4;
-      --muted: #6c7086;
+      --muted: #585b70;
       --accent: #89b4fa;
       --win: #a6e3a1;
       --folder: #f9e2af;
-      --border: #1e2238;
+      --border: #181b28;
       --danger: #f38ba8;
     }
 
@@ -34,24 +34,24 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 12px;
+      padding: 10px;
     }
 
     .window {
       width: 100%;
-      max-width: 1100px;
-      height: 760px;
+      max-width: 1150px;
+      height: 800px;
       background: var(--panel);
       border-radius: 12px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       border: 1px solid var(--border);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
     }
 
     .header {
-      background: #090a10;
+      background: #05060a;
       padding: 12px 18px;
       display: flex;
       align-items: center;
@@ -96,7 +96,7 @@
     }
 
     .btn {
-      background: #222638;
+      background: #1c2030;
       border: none;
       color: var(--text);
       padding: 6px 14px;
@@ -108,7 +108,7 @@
 
     .btn:hover:not(:disabled) {
       background: var(--accent);
-      color: #090a10;
+      color: #05060a;
     }
 
     .btn:disabled {
@@ -120,7 +120,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: #090a10;
+      background: #05060a;
       padding: 6px 12px;
       border-radius: 6px;
       flex-grow: 1;
@@ -144,7 +144,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 12px 6px;
+      padding: 10px 4px;
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
@@ -159,12 +159,12 @@
     }
 
     .node-icon {
-      font-size: 34px;
+      font-size: 32px;
       margin-bottom: 6px;
     }
 
     .node-name {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       word-break: break-word;
       line-height: 1.2;
     }
@@ -207,7 +207,7 @@
       gap: 14px;
       align-items: center;
       margin-bottom: 12px;
-      background: #090a10;
+      background: #05060a;
       padding: 10px;
       border-radius: 8px;
     }
@@ -230,7 +230,7 @@
     }
 
     .modal-content {
-      background: #090a10;
+      background: #05060a;
       padding: 14px;
       border-radius: 8px;
       font-family: monospace;
@@ -296,7 +296,7 @@
       </div>
       <div id="modalContent" class="modal-content"></div>
       <div style="text-align: right;">
-        <button class="btn" style="background: var(--win); color: #090a10;" onclick="closeModal()">Close</button>
+        <button class="btn" style="background: var(--win); color: #05060a;" onclick="closeModal()">Close</button>
       </div>
     </div>
   </div>
@@ -375,7 +375,7 @@
                         {
                           name: "Sulfolobaceae",
                           genera: [
-                            { name: "Sulfolobus", species: [{ name: "acidocaldarius", file: "acid_boiling_archaea.txt", wikiQuery: "Sulfolobus acidocaldarius" }] }
+                            { name: "Sulfolobus", species: [{ name: "acidocaldarius", file: "acid_archaea.txt", wikiQuery: "Sulfolobus acidocaldarius" }] }
                           ]
                         }
                       ]
@@ -402,14 +402,14 @@
                           name: "Enterobacteriaceae",
                           genera: [
                             { name: "Escherichia", species: [{ name: "coli", file: "e_coli.txt", wikiQuery: "Escherichia coli" }] },
-                            { name: "Salmonella", species: [{ name: "enterica", file: "food_poison_bacteria.txt", wikiQuery: "Salmonella enterica" }] },
+                            { name: "Salmonella", species: [{ name: "enterica", file: "food_poison.txt", wikiQuery: "Salmonella enterica" }] },
                             { name: "Klebsiella", species: [{ name: "pneumoniae", file: "superbug.txt", wikiQuery: "Klebsiella pneumoniae" }] }
                           ]
                         },
                         {
                           name: "Yersiniaceae",
                           genera: [
-                            { name: "Yersinia", species: [{ name: "pestis", file: "black_death.txt", wikiQuery: "Yersinia pestis" }] }
+                            { name: "Yersinia", species: [{ name: "pestis", file: "black_plague.txt", wikiQuery: "Yersinia pestis" }] }
                           ]
                         }
                       ]
@@ -452,13 +452,13 @@
                         {
                           name: "Bacillaceae",
                           genera: [
-                            { name: "Bacillus", species: [{ name: "anthracis", file: "anthrax.txt", wikiQuery: "Bacillus anthracis" }, { name: "subtilis", file: "hay_microbe.txt", wikiQuery: "Bacillus subtilis" }] }
+                            { name: "Bacillus", species: [{ name: "anthracis", file: "anthrax.txt", wikiQuery: "Bacillus anthracis" }, { name: "subtilis", file: "hay_bacillus.txt", wikiQuery: "Bacillus subtilis" }] }
                           ]
                         },
                         {
                           name: "Staphylococcaceae",
                           genera: [
-                            { name: "Staphylococcus", species: [{ name: "aureus", file: "staph_infection.txt", wikiQuery: "Staphylococcus aureus" }] }
+                            { name: "Staphylococcus", species: [{ name: "aureus", file: "golden_staph.txt", wikiQuery: "Staphylococcus aureus" }] }
                           ]
                         }
                       ]
@@ -491,7 +491,7 @@
                         {
                           name: "Clostridiaceae",
                           genera: [
-                            { name: "Clostridium", species: [{ name: "botulinum", file: "deadliest_toxin.txt", wikiQuery: "Clostridium botulinum" }, { name: "tetani", file: "tetanus.txt", wikiQuery: "Clostridium tetani" }] }
+                            { name: "Clostridium", species: [{ name: "botulinum", file: "botulinum_toxin.txt", wikiQuery: "Clostridium botulinum" }, { name: "tetani", file: "tetanus.txt", wikiQuery: "Clostridium tetani" }] }
                           ]
                         }
                       ]
@@ -512,7 +512,7 @@
                         {
                           name: "Mycobacteriaceae",
                           genera: [
-                            { name: "Mycobacterium", species: [{ name: "tuberculosis", file: "white_plague.txt", wikiQuery: "Mycobacterium tuberculosis" }, { name: "leprae", file: "leprosy.txt", wikiQuery: "Mycobacterium leprae" }] }
+                            { name: "Mycobacterium", species: [{ name: "tuberculosis", file: "tuberculosis.txt", wikiQuery: "Mycobacterium tuberculosis" }, { name: "leprae", file: "leprosy.txt", wikiQuery: "Mycobacterium leprae" }] }
                           ]
                         }
                       ]
@@ -540,6 +540,27 @@
                           name: "Treponemataceae",
                           genera: [
                             { name: "Treponema", species: [{ name: "pallidum", file: "syphilis_spirochete.txt", wikiQuery: "Treponema pallidum" }] }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Cyanobacteriota",
+              classes: [
+                {
+                  name: "Cyanophyceae",
+                  orders: [
+                    {
+                      name: "Nostocales",
+                      families: [
+                        {
+                          name: "Nostocaceae",
+                          genera: [
+                            { name: "Anabaena", species: [{ name: "variabilis", file: "blue_green_algae.txt", wikiQuery: "Anabaena variabilis" }] }
                           ]
                         }
                       ]
@@ -575,7 +596,103 @@
                                     { name: "neanderthalensis", file: "neanderthal.txt", wikiQuery: "Neanderthal" },
                                     { name: "erectus", file: "java_man.txt", wikiQuery: "Homo erectus" },
                                     { name: "habilis", file: "handy_man.txt", wikiQuery: "Homo habilis" },
-                                    { name: "heidelbergensis", file: "heidelberg_man.txt", wikiQuery: "Homo heidelbergensis" }
+                                    { name: "ergaster", file: "working_man.txt", wikiQuery: "Homo ergaster" },
+                                    { name: "rudolfensis", file: "lake_rudolf_man.txt", wikiQuery: "Homo rudolfensis" },
+                                    { name: "heidelbergensis", file: "heidelberg_man.txt", wikiQuery: "Homo heidelbergensis" },
+                                    { name: "antecessor", file: "pioneer_man.txt", wikiQuery: "Homo antecessor" },
+                                    { name: "rhodesiensis", file: "broken_hill_man.txt", wikiQuery: "Homo rhodesiensis" },
+                                    { name: "georgicus", file: "dmanisi_hominin.txt", wikiQuery: "Homo erectus georgicus" },
+                                    { name: "floresiensis", file: "hobbit_man.txt", wikiQuery: "Homo floresiensis" },
+                                    { name: "luzonensis", file: "philippine_hominin.txt", wikiQuery: "Homo luzonensis" },
+                                    { name: "naledi", file: "star_cave_hominin.txt", wikiQuery: "Homo naledi" },
+                                    { name: "longi", file: "dragon_man.txt", wikiQuery: "Homo longi" },
+                                    { name: "gautengensis", file: "south_african_homo.txt", wikiQuery: "Homo gautengensis" }
+                                  ]
+                                },
+                                {
+                                  name: "Australopithecus",
+                                  species: [
+                                    { name: "afarensis", file: "lucy_fossil.txt", wikiQuery: "Australopithecus afarensis" },
+                                    { name: "africanus", file: "taung_child.txt", wikiQuery: "Australopithecus africanus" },
+                                    { name: "anamensis", file: "kanapoi_ape.txt", wikiQuery: "Australopithecus anamensis" },
+                                    { name: "garhi", file: "bouri_hominin.txt", wikiQuery: "Australopithecus garhi" },
+                                    { name: "sediba", file: "malapa_fossil.txt", wikiQuery: "Australopithecus sediba" },
+                                    { name: "deyiremeda", file: "woranso_mille_ape.txt", wikiQuery: "Australopithecus deyiremeda" }
+                                  ]
+                                },
+                                {
+                                  name: "Paranthropus",
+                                  species: [
+                                    { name: "boisei", file: "nutcracker_man.txt", wikiQuery: "Paranthropus boisei" },
+                                    { name: "robustus", file: "swartkrans_hominin.txt", wikiQuery: "Paranthropus robustus" },
+                                    { name: "aethiopicus", file: "black_skull_fossil.txt", wikiQuery: "Paranthropus aethiopicus" }
+                                  ]
+                                },
+                                {
+                                  name: "Ardipithecus",
+                                  species: [
+                                    { name: "ramidus", file: "ardi_skeleton.txt", wikiQuery: "Ardipithecus ramidus" },
+                                    { name: "kadabba", file: "early_ethiopian_hominin.txt", wikiQuery: "Ardipithecus kadabba" }
+                                  ]
+                                },
+                                {
+                                  name: "Sahelanthropus",
+                                  species: [
+                                    { name: "tchadensis", file: "toumai_fossil.txt", wikiQuery: "Sahelanthropus" }
+                                  ]
+                                },
+                                {
+                                  name: "Orrorin",
+                                  species: [
+                                    { name: "tugenensis", file: "millennium_man.txt", wikiQuery: "Orrorin" }
+                                  ]
+                                },
+                                {
+                                  name: "Kenyanthropus",
+                                  species: [
+                                    { name: "platyops", file: "flat_faced_man.txt", wikiQuery: "Kenyanthropus" }
+                                  ]
+                                },
+                                {
+                                  name: "Gigantopithecus",
+                                  species: [
+                                    { name: "blacki", file: "giant_ape_king.txt", wikiQuery: "Gigantopithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Dryopithecus",
+                                  species: [
+                                    { name: "fontani", file: "oak_forest_ape.txt", wikiQuery: "Dryopithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Sivapithecus",
+                                  species: [
+                                    { name: "indicus", file: "siwalik_hills_ape.txt", wikiQuery: "Sivapithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Ouranopithecus",
+                                  species: [
+                                    { name: "macedoniensis", file: "greek_fossil_ape.txt", wikiQuery: "Ouranopithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Graecopithecus",
+                                  species: [
+                                    { name: "freybergi", file: "el_graeco_mandible.txt", wikiQuery: "Graecopithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Oreopithecus",
+                                  species: [
+                                    { name: "bambolii", file: "swamp_ape.txt", wikiQuery: "Oreopithecus" }
+                                  ]
+                                },
+                                {
+                                  name: "Ankarapithecus",
+                                  species: [
+                                    { name: "meteai", file: "turkish_fossil_ape.txt", wikiQuery: "Ankarapithecus" }
                                   ]
                                 },
                                 {
@@ -596,7 +713,8 @@
                                   name: "Pongo",
                                   species: [
                                     { name: "pygmaeus", file: "bornean_ape.txt", wikiQuery: "Bornean orangutan" },
-                                    { name: "abelii", file: "sumatran_ape.txt", wikiQuery: "Sumatran orangutan" }
+                                    { name: "abelii", file: "sumatran_ape.txt", wikiQuery: "Sumatran orangutan" },
+                                    { name: "tapanuliensis", file: "tapanuli_ape.txt", wikiQuery: "Tapanuli orangutan" }
                                   ]
                                 }
                               ]
@@ -604,59 +722,61 @@
                             {
                               name: "Hylobatidae",
                               genera: [
-                                {
-                                  name: "Hylobates",
-                                  species: [
-                                    { name: "lar", file: "lar_gibbon.txt", wikiQuery: "Lar gibbon" }
-                                  ]
-                                }
+                                { name: "Hylobates", species: [{ name: "lar", file: "white_handed_gibbon.txt", wikiQuery: "Lar gibbon" }] },
+                                { name: "Symphalangus", species: [{ name: "syndactylus", file: "siamang.txt", wikiQuery: "Siamang" }] },
+                                { name: "Nomascus", species: [{ name: "concolor", file: "black_crested_gibbon.txt", wikiQuery: "Black crested gibbon" }] },
+                                { name: "Hoolock", species: [{ name: "hoolock", file: "western_hoolock.txt", wikiQuery: "Western hoolock gibbon" }] }
                               ]
                             },
                             {
                               name: "Cercopithecidae",
                               genera: [
-                                {
-                                  name: "Macaca",
-                                  species: [
-                                    { name: "mulatta", file: "rhesus_monkey.txt", wikiQuery: "Rhesus macaque" },
-                                    { name: "fuscata", file: "snow_monkey.txt", wikiQuery: "Japanese macaque" }
-                                  ]
-                                },
-                                {
-                                  name: "Papio",
-                                  species: [
-                                    { name: "anubis", file: "baboon.txt", wikiQuery: "Olive baboon" },
-                                    { name: "hamadryas", file: "sacred_baboon.txt", wikiQuery: "Hamadryas baboon" }
-                                  ]
-                                },
-                                {
-                                  name: "Mandrillus",
-                                  species: [
-                                    { name: "sphinx", file: "colorful_face_mandrill.txt", wikiQuery: "Mandrill" }
-                                  ]
-                                }
+                                { name: "Macaca", species: [{ name: "mulatta", file: "rhesus_monkey.txt", wikiQuery: "Rhesus macaque" }, { name: "fuscata", file: "snow_monkey.txt", wikiQuery: "Japanese macaque" }] },
+                                { name: "Papio", species: [{ name: "anubis", file: "baboon.txt", wikiQuery: "Olive baboon" }, { name: "hamadryas", file: "sacred_baboon.txt", wikiQuery: "Hamadryas baboon" }] },
+                                { name: "Mandrillus", species: [{ name: "sphinx", file: "mandrill.txt", wikiQuery: "Mandrill" }] },
+                                { name: "Theropithecus", species: [{ name: "gelada", file: "gelada_monkey.txt", wikiQuery: "Gelada" }] },
+                                { name: "Nasalis", species: [{ name: "larvatus", file: "proboscis_monkey.txt", wikiQuery: "Proboscis monkey" }] },
+                                { name: "Chlorocebus", species: [{ name: "pygerythrus", file: "vervet_monkey.txt", wikiQuery: "Vervet monkey" }] },
+                                { name: "Colobus", species: [{ name: "guereza", file: "black_and_white_colobus.txt", wikiQuery: "Mantled guereza" }] },
+                                { name: "Rhinopithecus", species: [{ name: "roxellana", file: "golden_snub_nosed.txt", wikiQuery: "Golden snub-nosed monkey" }] }
+                              ]
+                            },
+                            {
+                              name: "Platyrrhini",
+                              genera: [
+                                { name: "Alouatta", species: [{ name: "caraya", file: "black_howler.txt", wikiQuery: "Black howler" }] },
+                                { name: "Ateles", species: [{ name: "paniscus", file: "red_faced_spider_monkey.txt", wikiQuery: "Red-faced spider monkey" }] },
+                                { name: "Cebus", species: [{ name: "capucinus", file: "white_headed_capuchin.txt", wikiQuery: "White-headed capuchin" }] },
+                                { name: "Callithrix", species: [{ name: "jacchus", file: "common_marmoset.txt", wikiQuery: "Common marmoset" }] },
+                                { name: "Leontopithecus", species: [{ name: "rosalia", file: "golden_lion_tamarin.txt", wikiQuery: "Golden lion tamarin" }] }
                               ]
                             },
                             {
                               name: "Lemuridae",
                               genera: [
-                                {
-                                  name: "Lemur",
-                                  species: [
-                                    { name: "catta", file: "ring_tailed_lemur.txt", wikiQuery: "Ring-tailed lemur" }
-                                  ]
-                                }
+                                { name: "Lemur", species: [{ name: "catta", file: "ring_tailed_lemur.txt", wikiQuery: "Ring-tailed lemur" }] },
+                                { name: "Eulemur", species: [{ name: "fulvus", file: "common_brown_lemur.txt", wikiQuery: "Common brown lemur" }] },
+                                { name: "Varecia", species: [{ name: "variegata", file: "black_and_white_ruffed_lemur.txt", wikiQuery: "Black-and-white ruffed lemur" }] }
+                              ]
+                            },
+                            {
+                              name: "Indriidae",
+                              genera: [
+                                { name: "Indri", species: [{ name: "indri", file: "babakoto.txt", wikiQuery: "Indri" }] },
+                                { name: "Propithecus", species: [{ name: "verreauxi", file: "dancing_sifaka.txt", wikiQuery: "Verreaux's sifaka" }] }
+                              ]
+                            },
+                            {
+                              name: "Daubentoniidae",
+                              genera: [
+                                { name: "Daubentonia", species: [{ name: "madagascariensis", file: "aye_aye.txt", wikiQuery: "Aye-aye" }] }
                               ]
                             },
                             {
                               name: "Tarsiidae",
                               genera: [
-                                {
-                                  name: "Carlito",
-                                  species: [
-                                    { name: "syrichta", file: "giant_eyed_tarsier.txt", wikiQuery: "Philippine tarsier" }
-                                  ]
-                                }
+                                { name: "Carlito", species: [{ name: "syrichta", file: "philippine_tarsier.txt", wikiQuery: "Philippine tarsier" }] },
+                                { name: "Cephalopachus", species: [{ name: "bancanus", file: "horsfields_tarsier.txt", wikiQuery: "Horsfield's tarsier" }] }
                               ]
                             }
                           ]
@@ -670,30 +790,20 @@
                                 {
                                   name: "Panthera",
                                   species: [
-                                    { name: "leo", file: "king_of_beasts.txt", wikiQuery: "Lion" },
-                                    { name: "tigris", file: "striped_predator.txt", wikiQuery: "Tiger" },
-                                    { name: "onca", file: "jungle_jaguar.txt", wikiQuery: "Jaguar" },
-                                    { name: "pardus", file: "spotted_leopard.txt", wikiQuery: "Leopard" },
-                                    { name: "uncia", file: "snow_ghost.txt", wikiQuery: "Snow leopard" }
+                                    { name: "leo", file: "lion.txt", wikiQuery: "Lion" },
+                                    { name: "tigris", file: "tiger.txt", wikiQuery: "Tiger" },
+                                    { name: "onca", file: "jaguar.txt", wikiQuery: "Jaguar" },
+                                    { name: "pardus", file: "leopard.txt", wikiQuery: "Leopard" },
+                                    { name: "uncia", file: "snow_leopard.txt", wikiQuery: "Snow leopard" }
                                   ]
                                 },
-                                {
-                                  name: "Acinonyx",
-                                  species: [
-                                    { name: "jubatus", file: "fastest_land_animal.txt", wikiQuery: "Cheetah" }
-                                  ]
-                                },
-                                {
-                                  name: "Puma",
-                                  species: [
-                                    { name: "concolor", file: "mountain_lion.txt", wikiQuery: "Cougar" }
-                                  ]
-                                },
+                                { name: "Acinonyx", species: [{ name: "jubatus", file: "cheetah.txt", wikiQuery: "Cheetah" }] },
+                                { name: "Puma", species: [{ name: "concolor", file: "cougar.txt", wikiQuery: "Cougar" }] },
                                 {
                                   name: "Felis",
                                   species: [
-                                    { name: "catus", file: "domestic_feline.txt", wikiQuery: "Cat" },
-                                    { name: "silvestris", file: "forest_cat.txt", wikiQuery: "European wildcat" }
+                                    { name: "catus", file: "house_cat.txt", wikiQuery: "Cat" },
+                                    { name: "silvestris", file: "wildcat.txt", wikiQuery: "European wildcat" }
                                   ]
                                 }
                               ]
@@ -704,8 +814,8 @@
                                 {
                                   name: "Canis",
                                   species: [
-                                    { name: "lupus", file: "timber_wolf.txt", wikiQuery: "Wolf" },
-                                    { name: "latrans", file: "prairie_wolf.txt", wikiQuery: "Coyote" },
+                                    { name: "lupus", file: "wolf.txt", wikiQuery: "Wolf" },
+                                    { name: "latrans", file: "coyote.txt", wikiQuery: "Coyote" },
                                     { name: "aureus", file: "golden_jackal.txt", wikiQuery: "Golden jackal" }
                                   ]
                                 },
@@ -713,8 +823,8 @@
                                   name: "Vulpes",
                                   species: [
                                     { name: "vulpes", file: "red_fox.txt", wikiQuery: "Red fox" },
-                                    { name: "lagopus", file: "white_tundra_fox.txt", wikiQuery: "Arctic fox" },
-                                    { name: "zerda", file: "big_eared_desert_fox.txt", wikiQuery: "Fennec fox" }
+                                    { name: "lagopus", file: "arctic_fox.txt", wikiQuery: "Arctic fox" },
+                                    { name: "zerda", file: "fennec_fox.txt", wikiQuery: "Fennec fox" }
                                   ]
                                 }
                               ]
@@ -725,17 +835,12 @@
                                 {
                                   name: "Ursus",
                                   species: [
-                                    { name: "arctos", file: "grizzly.txt", wikiQuery: "Brown bear" },
-                                    { name: "maritimus", file: "ice_bear.txt", wikiQuery: "Polar bear" },
+                                    { name: "arctos", file: "brown_bear.txt", wikiQuery: "Brown bear" },
+                                    { name: "maritimus", file: "polar_bear.txt", wikiQuery: "Polar bear" },
                                     { name: "americanus", file: "black_bear.txt", wikiQuery: "American black bear" }
                                   ]
                                 },
-                                {
-                                  name: "Ailuropoda",
-                                  species: [
-                                    { name: "melanoleuca", file: "bamboo_eater.txt", wikiQuery: "Giant panda" }
-                                  ]
-                                }
+                                { name: "Ailuropoda", species: [{ name: "melanoleuca", file: "giant_panda.txt", wikiQuery: "Giant panda" }] }
                               ]
                             }
                           ]
@@ -747,28 +852,28 @@
                               name: "Bovidae",
                               genera: [
                                 { name: "Bos", species: [{ name: "taurus", file: "cattle.txt", wikiQuery: "Cattle" }, { name: "grunniens", file: "tibetan_yak.txt", wikiQuery: "Yak" }] },
-                                { name: "Bison", species: [{ name: "bison", file: "american_buffalo.txt", wikiQuery: "American bison" }] }
+                                { name: "Bison", species: [{ name: "bison", file: "american_bison.txt", wikiQuery: "American bison" }] }
                               ]
                             },
                             {
                               name: "Cervidae",
                               genera: [
-                                { name: "Alces", species: [{ name: "alces", file: "giant_moose.txt", wikiQuery: "Moose" }] },
+                                { name: "Alces", species: [{ name: "alces", file: "moose.txt", wikiQuery: "Moose" }] },
                                 { name: "Rangifer", species: [{ name: "tarandus", file: "reindeer.txt", wikiQuery: "Reindeer" }] }
                               ]
                             },
                             {
                               name: "Balaenopteridae",
                               genera: [
-                                { name: "Balaenoptera", species: [{ name: "musculus", file: "colossus_of_the_ocean.txt", wikiQuery: "Blue whale" }] },
-                                { name: "Megaptera", species: [{ name: "novaeangliae", file: "singing_whale.txt", wikiQuery: "Humpback whale" }] }
+                                { name: "Balaenoptera", species: [{ name: "musculus", file: "blue_whale.txt", wikiQuery: "Blue whale" }] },
+                                { name: "Megaptera", species: [{ name: "novaeangliae", file: "humpback_whale.txt", wikiQuery: "Humpback whale" }] }
                               ]
                             },
                             {
                               name: "Delphinidae",
                               genera: [
-                                { name: "Orcinus", species: [{ name: "orca", file: "apex_sea_killer.txt", wikiQuery: "Orca" }] },
-                                { name: "Tursiops", species: [{ name: "truncatus", file: "ocean_playmate.txt", wikiQuery: "Common bottlenose dolphin" }] }
+                                { name: "Orcinus", species: [{ name: "orca", file: "orca.txt", wikiQuery: "Orca" }] },
+                                { name: "Tursiops", species: [{ name: "truncatus", file: "bottlenose_dolphin.txt", wikiQuery: "Common bottlenose dolphin" }] }
                               ]
                             }
                           ]
@@ -779,7 +884,7 @@
                             {
                               name: "Equidae",
                               genera: [
-                                { name: "Equus", species: [{ name: "caballus", file: "steed.txt", wikiQuery: "Horse" }, { name: "quagga", file: "striped_zebra.txt", wikiQuery: "Plains zebra" }] }
+                                { name: "Equus", species: [{ name: "caballus", file: "horse.txt", wikiQuery: "Horse" }, { name: "quagga", file: "zebra.txt", wikiQuery: "Plains zebra" }] }
                               ]
                             },
                             {
@@ -796,26 +901,26 @@
                             {
                               name: "Muridae",
                               genera: [
-                                { name: "Mus", species: [{ name: "musculus", file: "lab_mouse.txt", wikiQuery: "House mouse" }] },
-                                { name: "Rattus", species: [{ name: "norvegicus", file: "sewer_rat.txt", wikiQuery: "Brown rat" }] }
+                                { name: "Mus", species: [{ name: "musculus", file: "mouse.txt", wikiQuery: "House mouse" }] },
+                                { name: "Rattus", species: [{ name: "norvegicus", file: "brown_rat.txt", wikiQuery: "Brown rat" }] }
                               ]
                             },
                             {
                               name: "Sciuridae",
                               genera: [
-                                { name: "Sciurus", species: [{ name: "carolinensis", file: "nut_hoarder.txt", wikiQuery: "Eastern gray squirrel" }] }
+                                { name: "Sciurus", species: [{ name: "carolinensis", file: "gray_squirrel.txt", wikiQuery: "Eastern gray squirrel" }] }
                               ]
                             },
                             {
                               name: "Castoridae",
                               genera: [
-                                { name: "Castor", species: [{ name: "canadensis", file: "dam_engineer.txt", wikiQuery: "North American beaver" }] }
+                                { name: "Castor", species: [{ name: "canadensis", file: "beaver.txt", wikiQuery: "North American beaver" }] }
                               ]
                             },
                             {
                               name: "Caviidae",
                               genera: [
-                                { name: "Hydrochoerus", species: [{ name: "hydrochaeris", file: "chill_giant_rodent.txt", wikiQuery: "Capybara" }] }
+                                { name: "Hydrochoerus", species: [{ name: "hydrochaeris", file: "capybara.txt", wikiQuery: "Capybara" }] }
                               ]
                             }
                           ]
@@ -826,13 +931,13 @@
                             {
                               name: "Pteropodidae",
                               genera: [
-                                { name: "Pteropus", species: [{ name: "vampyrus", file: "giant_fruit_bat.txt", wikiQuery: "Large flying fox" }] }
+                                { name: "Pteropus", species: [{ name: "vampyrus", file: "flying_fox.txt", wikiQuery: "Large flying fox" }] }
                               ]
                             },
                             {
                               name: "Phyllostomidae",
                               genera: [
-                                { name: "Desmodus", species: [{ name: "rotundus", file: "blood_drinker.txt", wikiQuery: "Common vampire bat" }] }
+                                { name: "Desmodus", species: [{ name: "rotundus", file: "vampire_bat.txt", wikiQuery: "Common vampire bat" }] }
                               ]
                             }
                           ]
@@ -843,8 +948,19 @@
                             {
                               name: "Elephantidae",
                               genera: [
-                                { name: "Loxodonta", species: [{ name: "africana", file: "giant_savanna_tusker.txt", wikiQuery: "African bush elephant" }] },
-                                { name: "Elephas", species: [{ name: "maximus", file: "asian_working_elephant.txt", wikiQuery: "Asian elephant" }] }
+                                { name: "Loxodonta", species: [{ name: "africana", file: "african_elephant.txt", wikiQuery: "African bush elephant" }] },
+                                { name: "Elephas", species: [{ name: "maximus", file: "asian_elephant.txt", wikiQuery: "Asian elephant" }] }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Eulipotyphla",
+                          families: [
+                            {
+                              name: "Erinaceidae",
+                              genera: [
+                                { name: "Erinaceus", species: [{ name: "europaeus", file: "hedgehog.txt", wikiQuery: "European hedgehog" }] }
                               ]
                             }
                           ]
@@ -860,9 +976,9 @@
                             {
                               name: "Accipitridae",
                               genera: [
-                                { name: "Haliaeetus", species: [{ name: "leucocephalus", file: "freedom_bird.txt", wikiQuery: "Bald eagle" }] },
-                                { name: "Aquila", species: [{ name: "chrysaetos", file: "apex_raptor.txt", wikiQuery: "Golden eagle" }] },
-                                { name: "Pithecophaga", species: [{ name: "jefferyi", file: "monkey_eating_eagle.txt", wikiQuery: "Philippine eagle" }] }
+                                { name: "Haliaeetus", species: [{ name: "leucocephalus", file: "bald_eagle.txt", wikiQuery: "Bald eagle" }] },
+                                { name: "Aquila", species: [{ name: "chrysaetos", file: "golden_eagle.txt", wikiQuery: "Golden eagle" }] },
+                                { name: "Pithecophaga", species: [{ name: "jefferyi", file: "philippine_eagle.txt", wikiQuery: "Philippine eagle" }] }
                               ]
                             }
                           ]
@@ -873,13 +989,13 @@
                             {
                               name: "Strigidae",
                               genera: [
-                                { name: "Bubo", species: [{ name: "scandiacus", file: "arctic_silent_hunter.txt", wikiQuery: "Snowy owl" }] }
+                                { name: "Bubo", species: [{ name: "scandiacus", file: "snowy_owl.txt", wikiQuery: "Snowy owl" }] }
                               ]
                             },
                             {
                               name: "Tytonidae",
                               genera: [
-                                { name: "Tyto", species: [{ name: "alba", file: "heart_faced_owl.txt", wikiQuery: "Barn owl" }] }
+                                { name: "Tyto", species: [{ name: "alba", file: "barn_owl.txt", wikiQuery: "Barn owl" }] }
                               ]
                             }
                           ]
@@ -890,7 +1006,7 @@
                             {
                               name: "Spheniscidae",
                               genera: [
-                                { name: "Aptenodytes", species: [{ name: "forsteri", file: "antarctic_marcher.txt", wikiQuery: "Emperor penguin" }] }
+                                { name: "Aptenodytes", species: [{ name: "forsteri", file: "emperor_penguin.txt", wikiQuery: "Emperor penguin" }] }
                               ]
                             }
                           ]
@@ -901,7 +1017,18 @@
                             {
                               name: "Psittacidae",
                               genera: [
-                                { name: "Ara", species: [{ name: "macao", file: "rainbow_feather_parrot.txt", wikiQuery: "Scarlet macaw" }] }
+                                { name: "Ara", species: [{ name: "macao", file: "scarlet_macaw.txt", wikiQuery: "Scarlet macaw" }] }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Passeriformes",
+                          families: [
+                            {
+                              name: "Corvidae",
+                              genera: [
+                                { name: "Corvus", species: [{ name: "corax", file: "raven.txt", wikiQuery: "Common raven" }] }
                               ]
                             }
                           ]
@@ -917,20 +1044,20 @@
                             {
                               name: "Viperidae",
                               genera: [
-                                { name: "Crotalus", species: [{ name: "atrox", file: "rattle_tail.txt", wikiQuery: "Western diamondback rattlesnake" }] }
+                                { name: "Crotalus", species: [{ name: "atrox", file: "rattlesnake.txt", wikiQuery: "Western diamondback rattlesnake" }] }
                               ]
                             },
                             {
                               name: "Elapidae",
                               genera: [
-                                { name: "Ophiophagus", species: [{ name: "hannah", file: "snake_devouring_king.txt", wikiQuery: "King cobra" }] },
-                                { name: "Dendroaspis", species: [{ name: "polylepis", file: "black_mouth_death.txt", wikiQuery: "Black mamba" }] }
+                                { name: "Ophiophagus", species: [{ name: "hannah", file: "king_cobra.txt", wikiQuery: "King cobra" }] },
+                                { name: "Dendroaspis", species: [{ name: "polylepis", file: "black_mamba.txt", wikiQuery: "Black mamba" }] }
                               ]
                             },
                             {
                               name: "Varanidae",
                               genera: [
-                                { name: "Varanus", species: [{ name: "komodoensis", file: "living_dragon.txt", wikiQuery: "Komodo dragon" }] }
+                                { name: "Varanus", species: [{ name: "komodoensis", file: "komodo_dragon.txt", wikiQuery: "Komodo dragon" }] }
                               ]
                             }
                           ]
@@ -941,13 +1068,13 @@
                             {
                               name: "Crocodylidae",
                               genera: [
-                                { name: "Crocodylus", species: [{ name: "porosus", file: "ancient_armored_swamp_god.txt", wikiQuery: "Saltwater crocodile" }] }
+                                { name: "Crocodylus", species: [{ name: "porosus", file: "saltwater_crocodile.txt", wikiQuery: "Saltwater crocodile" }] }
                               ]
                             },
                             {
                               name: "Alligatoridae",
                               genera: [
-                                { name: "Alligator", species: [{ name: "mississippiensis", file: "swamp_chomper.txt", wikiQuery: "American alligator" }] }
+                                { name: "Alligator", species: [{ name: "mississippiensis", file: "american_alligator.txt", wikiQuery: "American alligator" }] }
                               ]
                             }
                           ]
@@ -958,13 +1085,13 @@
                             {
                               name: "Cheloniidae",
                               genera: [
-                                { name: "Chelonia", species: [{ name: "mydas", file: "ocean_navigator.txt", wikiQuery: "Green sea turtle" }] }
+                                { name: "Chelonia", species: [{ name: "mydas", file: "green_sea_turtle.txt", wikiQuery: "Green sea turtle" }] }
                               ]
                             },
                             {
                               name: "Testudinidae",
                               genera: [
-                                { name: "Chelonoidis", species: [{ name: "niger", file: "century_old_tank.txt", wikiQuery: "Galápagos tortoise" }] }
+                                { name: "Chelonoidis", species: [{ name: "niger", file: "galapagos_tortoise.txt", wikiQuery: "Galápagos tortoise" }] }
                               ]
                             }
                           ]
@@ -980,13 +1107,13 @@
                             {
                               name: "Dendrobatidae",
                               genera: [
-                                { name: "Phyllobates", species: [{ name: "terribilis", file: "golden_poison_leaper.txt", wikiQuery: "Golden poison frog" }] }
+                                { name: "Phyllobates", species: [{ name: "terribilis", file: "golden_poison_frog.txt", wikiQuery: "Golden poison frog" }] }
                               ]
                             },
                             {
                               name: "Ranidae",
                               genera: [
-                                { name: "Lithobates", species: [{ name: "catesbeianus", file: "deep_croaker.txt", wikiQuery: "American bullfrog" }] }
+                                { name: "Lithobates", species: [{ name: "catesbeianus", file: "american_bullfrog.txt", wikiQuery: "American bullfrog" }] }
                               ]
                             }
                           ]
@@ -997,7 +1124,7 @@
                             {
                               name: "Ambystomatidae",
                               genera: [
-                                { name: "Ambystoma", species: [{ name: "mexicanum", file: "regenerating_water_monster.txt", wikiQuery: "Axolotl" }] }
+                                { name: "Ambystoma", species: [{ name: "mexicanum", file: "axolotl.txt", wikiQuery: "Axolotl" }] }
                               ]
                             }
                           ]
@@ -1013,7 +1140,7 @@
                             {
                               name: "Lamnidae",
                               genera: [
-                                { name: "Carcharodon", species: [{ name: "carcharias", file: "white_torpedo_jaws.txt", wikiQuery: "Great white shark" }] }
+                                { name: "Carcharodon", species: [{ name: "carcharias", file: "great_white_shark.txt", wikiQuery: "Great white shark" }] }
                               ]
                             }
                           ]
@@ -1024,7 +1151,7 @@
                             {
                               name: "Rhincodontidae",
                               genera: [
-                                { name: "Rhincodon", species: [{ name: "typus", file: "gentle_ocean_bus.txt", wikiQuery: "Whale shark" }] }
+                                { name: "Rhincodon", species: [{ name: "typus", file: "whale_shark.txt", wikiQuery: "Whale shark" }] }
                               ]
                             }
                           ]
@@ -1045,20 +1172,20 @@
                             {
                               name: "Scarabaeidae",
                               genera: [
-                                { name: "Scarabaeus", species: [{ name: "sacer", file: "egyptian_roller.txt", wikiQuery: "Scarabaeus sacer" }] },
-                                { name: "Dynastes", species: [{ name: "hercules", file: "heavy_lifting_beast.txt", wikiQuery: "Hercules beetle" }] }
+                                { name: "Scarabaeus", species: [{ name: "sacer", file: "sacred_scarab.txt", wikiQuery: "Scarabaeus sacer" }] },
+                                { name: "Dynastes", species: [{ name: "hercules", file: "hercules_beetle.txt", wikiQuery: "Hercules beetle" }] }
                               ]
                             },
                             {
                               name: "Lucanidae",
                               genera: [
-                                { name: "Lucanus", species: [{ name: "cervus", file: "antlered_beetle.txt", wikiQuery: "Lucanus cervus" }] }
+                                { name: "Lucanus", species: [{ name: "cervus", file: "stag_beetle.txt", wikiQuery: "Lucanus cervus" }] }
                               ]
                             },
                             {
                               name: "Lampyridae",
                               genera: [
-                                { name: "Photinus", species: [{ name: "pyralis", file: "night_blinker.txt", wikiQuery: "Photinus pyralis" }] }
+                                { name: "Photinus", species: [{ name: "pyralis", file: "firefly.txt", wikiQuery: "Photinus pyralis" }] }
                               ]
                             }
                           ]
@@ -1069,22 +1196,22 @@
                             {
                               name: "Apidae",
                               genera: [
-                                { name: "Apis", species: [{ name: "mellifera", file: "nectar_worker.txt", wikiQuery: "Western honey bee" }] },
-                                { name: "Bombus", species: [{ name: "terrestris", file: "fuzzy_buzzer.txt", wikiQuery: "Buff-tailed bumblebee" }] }
+                                { name: "Apis", species: [{ name: "mellifera", file: "western_honey_bee.txt", wikiQuery: "Western honey bee" }] },
+                                { name: "Bombus", species: [{ name: "terrestris", file: "bumblebee.txt", wikiQuery: "Buff-tailed bumblebee" }] }
                               ]
                             },
                             {
                               name: "Formicidae",
                               genera: [
-                                { name: "Solenopsis", species: [{ name: "invicta", file: "angry_mound_invader.txt", wikiQuery: "Red imported fire ant" }] },
-                                { name: "Atta", species: [{ name: "cephalotes", file: "fungus_farmer_ant.txt", wikiQuery: "Atta cephalotes" }] },
-                                { name: "Paraponera", species: [{ name: "clavata", file: "rifle_shot_sting.txt", wikiQuery: "Paraponera clavata" }] }
+                                { name: "Solenopsis", species: [{ name: "invicta", file: "red_fire_ant.txt", wikiQuery: "Red imported fire ant" }] },
+                                { name: "Atta", species: [{ name: "cephalotes", file: "leafcutter_ant.txt", wikiQuery: "Atta cephalotes" }] },
+                                { name: "Paraponera", species: [{ name: "clavata", file: "bullet_ant.txt", wikiQuery: "Paraponera clavata" }] }
                               ]
                             },
                             {
                               name: "Vespidae",
                               genera: [
-                                { name: "Vespa", species: [{ name: "mandarinia", file: "giant_aerial_hornet.txt", wikiQuery: "Asian giant hornet" }] }
+                                { name: "Vespa", species: [{ name: "mandarinia", file: "giant_hornet.txt", wikiQuery: "Asian giant hornet" }] }
                               ]
                             }
                           ]
@@ -1095,14 +1222,14 @@
                             {
                               name: "Nymphalidae",
                               genera: [
-                                { name: "Danaus", species: [{ name: "plexippus", file: "continent_crosser.txt", wikiQuery: "Monarch butterfly" }] },
-                                { name: "Morpho", species: [{ name: "peleides", file: "metallic_blue_wings.txt", wikiQuery: "Morpho peleides" }] }
+                                { name: "Danaus", species: [{ name: "plexippus", file: "monarch_butterfly.txt", wikiQuery: "Monarch butterfly" }] },
+                                { name: "Morpho", species: [{ name: "peleides", file: "blue_morpho.txt", wikiQuery: "Morpho peleides" }] }
                               ]
                             },
                             {
                               name: "Saturniidae",
                               genera: [
-                                { name: "Attacus", species: [{ name: "atlas", file: "snake_head_moth.txt", wikiQuery: "Atlas moth" }] }
+                                { name: "Attacus", species: [{ name: "atlas", file: "atlas_moth.txt", wikiQuery: "Atlas moth" }] }
                               ]
                             }
                           ]
@@ -1113,7 +1240,7 @@
                             {
                               name: "Aeshnidae",
                               genera: [
-                                { name: "Anax", species: [{ name: "imperator", file: "high_speed_hawker.txt", wikiQuery: "Emperor dragonfly" }] }
+                                { name: "Anax", species: [{ name: "imperator", file: "emperor_dragonfly.txt", wikiQuery: "Emperor dragonfly" }] }
                               ]
                             }
                           ]
@@ -1124,7 +1251,7 @@
                             {
                               name: "Hymenopodidae",
                               genera: [
-                                { name: "Hymenopus", species: [{ name: "coronatus", file: "flower_petal_killer.txt", wikiQuery: "Hymenopus coronatus" }] }
+                                { name: "Hymenopus", species: [{ name: "coronatus", file: "orchid_mantis.txt", wikiQuery: "Hymenopus coronatus" }] }
                               ]
                             }
                           ]
@@ -1140,25 +1267,25 @@
                             {
                               name: "Theridiidae",
                               genera: [
-                                { name: "Latrodectus", species: [{ name: "mactans", file: "red_hourglass.txt", wikiQuery: "Latrodectus mactans" }] }
+                                { name: "Latrodectus", species: [{ name: "mactans", file: "black_widow.txt", wikiQuery: "Latrodectus mactans" }] }
                               ]
                             },
                             {
                               name: "Theraphosidae",
                               genera: [
-                                { name: "Theraphosa", species: [{ name: "blondi", file: "massive_hairy_stalker.txt", wikiQuery: "Goliath birdeater" }] }
+                                { name: "Theraphosa", species: [{ name: "blondi", file: "goliath_birdeater.txt", wikiQuery: "Goliath birdeater" }] }
                               ]
                             },
                             {
                               name: "Sicariidae",
                               genera: [
-                                { name: "Loxosceles", species: [{ name: "reclusa", file: "flesh_rotter.txt", wikiQuery: "Brown recluse spider" }] }
+                                { name: "Loxosceles", species: [{ name: "reclusa", file: "brown_recluse.txt", wikiQuery: "Brown recluse spider" }] }
                               ]
                             },
                             {
-                              name: "Atrax",
+                              name: "Atracidae",
                               genera: [
-                                { name: "Atrax", species: [{ name: "robustus", file: "sydney_boot_killer.txt", wikiQuery: "Sydney funnel-web spider" }] }
+                                { name: "Atrax", species: [{ name: "robustus", file: "sydney_funnel_web.txt", wikiQuery: "Sydney funnel-web spider" }] }
                               ]
                             }
                           ]
@@ -1169,8 +1296,8 @@
                             {
                               name: "Buthidae",
                               genera: [
-                                { name: "Androctonus", species: [{ name: "australis", file: "fat_tail_killer.txt", wikiQuery: "Androctonus australis" }] },
-                                { name: "Leiurus", species: [{ name: "quinquestriatus", file: "death_stalker.txt", wikiQuery: "Deathstalker" }] }
+                                { name: "Androctonus", species: [{ name: "australis", file: "fattail_scorpion.txt", wikiQuery: "Androctonus australis" }] },
+                                { name: "Leiurus", species: [{ name: "quinquestriatus", file: "deathstalker.txt", wikiQuery: "Deathstalker" }] }
                               ]
                             }
                           ]
@@ -1186,13 +1313,13 @@
                             {
                               name: "Homaridae",
                               genera: [
-                                { name: "Homarus", species: [{ name: "americanus", file: "crushing_claw.txt", wikiQuery: "American lobster" }] }
+                                { name: "Homarus", species: [{ name: "americanus", file: "american_lobster.txt", wikiQuery: "American lobster" }] }
                               ]
                             },
                             {
                               name: "Portunidae",
                               genera: [
-                                { name: "Callinectes", species: [{ name: "sapidus", file: "sweet_blue_swimmer.txt", wikiQuery: "Callinectes sapidus" }] }
+                                { name: "Callinectes", species: [{ name: "sapidus", file: "blue_crab.txt", wikiQuery: "Callinectes sapidus" }] }
                               ]
                             }
                           ]
@@ -1203,7 +1330,7 @@
                             {
                               name: "Odontodactylidae",
                               genera: [
-                                { name: "Odontodactylus", species: [{ name: "scyllarus", file: "bullet_puncher.txt", wikiQuery: "Peacock mantis shrimp" }] }
+                                { name: "Odontodactylus", species: [{ name: "scyllarus", file: "peacock_mantis_shrimp.txt", wikiQuery: "Peacock mantis shrimp" }] }
                               ]
                             }
                           ]
@@ -1224,8 +1351,8 @@
                             {
                               name: "Octopodidae",
                               genera: [
-                                { name: "Octopus", species: [{ name: "vulgaris", file: "eight_legged_puzzle_solver.txt", wikiQuery: "Common octopus" }] },
-                                { name: "Hapalochlaena", species: [{ name: "lunulata", file: "glowing_rings_of_death.txt", wikiQuery: "Blue-ringed octopus" }] }
+                                { name: "Octopus", species: [{ name: "vulgaris", file: "common_octopus.txt", wikiQuery: "Common octopus" }] },
+                                { name: "Hapalochlaena", species: [{ name: "lunulata", file: "blue_ringed_octopus.txt", wikiQuery: "Blue-ringed octopus" }] }
                               ]
                             }
                           ]
@@ -1236,13 +1363,13 @@
                             {
                               name: "Architeuthidae",
                               genera: [
-                                { name: "Architeuthis", species: [{ name: "dux", file: "abyssal_kraken.txt", wikiQuery: "Giant squid" }] }
+                                { name: "Architeuthis", species: [{ name: "dux", file: "giant_squid.txt", wikiQuery: "Giant squid" }] }
                               ]
                             },
                             {
                               name: "Cranchiidae",
                               genera: [
-                                { name: "Mesonychoteuthis", species: [{ name: "hamiltoni", file: "hooked_colossus.txt", wikiQuery: "Colossal squid" }] }
+                                { name: "Mesonychoteuthis", species: [{ name: "hamiltoni", file: "colossal_squid.txt", wikiQuery: "Colossal squid" }] }
                               ]
                             }
                           ]
@@ -1258,7 +1385,7 @@
                             {
                               name: "Conidae",
                               genera: [
-                                { name: "Conus", species: [{ name: "geographus", file: "cigarette_snail.txt", wikiQuery: "Conus geographus" }] }
+                                { name: "Conus", species: [{ name: "geographus", file: "geography_cone_snail.txt", wikiQuery: "Conus geographus" }] }
                               ]
                             }
                           ]
@@ -1279,7 +1406,7 @@
                             {
                               name: "Chirodropidae",
                               genera: [
-                                { name: "Chironex", species: [{ name: "fleckeri", file: "invisible_sea_wasp.txt", wikiQuery: "Chironex fleckeri" }] }
+                                { name: "Chironex", species: [{ name: "fleckeri", file: "sea_wasp_box_jelly.txt", wikiQuery: "Chironex fleckeri" }] }
                               ]
                             }
                           ]
@@ -1295,7 +1422,7 @@
                             {
                               name: "Physaliidae",
                               genera: [
-                                { name: "Physalia", species: [{ name: "physalis", file: "floating_warship.txt", wikiQuery: "Portuguese man o' war" }] }
+                                { name: "Physalia", species: [{ name: "physalis", file: "portuguese_man_o_war.txt", wikiQuery: "Portuguese man o' war" }] }
                               ]
                             }
                           ]
@@ -1316,7 +1443,7 @@
                             {
                               name: "Acanthasteridae",
                               genera: [
-                                { name: "Acanthaster", species: [{ name: "planci", file: "coral_destroyer.txt", wikiQuery: "Crown-of-thorns starfish" }] }
+                                { name: "Acanthaster", species: [{ name: "planci", file: "crown_of_thorns.txt", wikiQuery: "Crown-of-thorns starfish" }] }
                               ]
                             }
                           ]
@@ -1342,16 +1469,16 @@
                             {
                               name: "Rosaceae",
                               genera: [
-                                { name: "Rosa", species: [{ name: "gallica", file: "fragrant_thorn.txt", wikiQuery: "Rosa gallica" }] },
-                                { name: "Malus", species: [{ name: "domestica", file: "forbidden_fruit.txt", wikiQuery: "Apple" }] },
-                                { name: "Fragaria", species: [{ name: "ananassa", file: "red_berry.txt", wikiQuery: "Garden strawberry" }] }
+                                { name: "Rosa", species: [{ name: "gallica", file: "french_rose.txt", wikiQuery: "Rosa gallica" }] },
+                                { name: "Malus", species: [{ name: "domestica", file: "apple.txt", wikiQuery: "Apple" }] },
+                                { name: "Fragaria", species: [{ name: "ananassa", file: "strawberry.txt", wikiQuery: "Garden strawberry" }] }
                               ]
                             },
                             {
                               name: "Cannabaceae",
                               genera: [
-                                { name: "Cannabis", species: [{ name: "sativa", file: "hemp_leaf.txt", wikiQuery: "Cannabis sativa" }] },
-                                { name: "Humulus", species: [{ name: "lupulus", file: "bitter_beer_flower.txt", wikiQuery: "Humulus lupulus" }] }
+                                { name: "Cannabis", species: [{ name: "sativa", file: "cannabis.txt", wikiQuery: "Cannabis sativa" }] },
+                                { name: "Humulus", species: [{ name: "lupulus", file: "hops.txt", wikiQuery: "Humulus lupulus" }] }
                               ]
                             }
                           ]
@@ -1362,10 +1489,10 @@
                             {
                               name: "Solanaceae",
                               genera: [
-                                { name: "Solanum", species: [{ name: "lycopersicum", file: "red_salad_orb.txt", wikiQuery: "Tomato" }, { name: "tuberosum", file: "earth_spud.txt", wikiQuery: "Potato" }] },
-                                { name: "Nicotiana", species: [{ name: "tabacum", file: "smoke_leaf.txt", wikiQuery: "Nicotiana tabacum" }] },
+                                { name: "Solanum", species: [{ name: "lycopersicum", file: "tomato.txt", wikiQuery: "Tomato" }, { name: "tuberosum", file: "potato.txt", wikiQuery: "Potato" }] },
+                                { name: "Nicotiana", species: [{ name: "tabacum", file: "tobacco.txt", wikiQuery: "Nicotiana tabacum" }] },
                                 { name: "Atropa", species: [{ name: "belladonna", file: "deadly_nightshade.txt", wikiQuery: "Atropa belladonna" }] },
-                                { name: "Capsicum", species: [{ name: "chinense", file: "reaper_burn.txt", wikiQuery: "Capsicum chinense" }] }
+                                { name: "Capsicum", species: [{ name: "chinense", file: "habanero_pepper.txt", wikiQuery: "Capsicum chinense" }] }
                               ]
                             }
                           ]
@@ -1376,8 +1503,8 @@
                             {
                               name: "Fagaceae",
                               genera: [
-                                { name: "Quercus", species: [{ name: "robur", file: "ancient_monarch_tree.txt", wikiQuery: "Quercus robur" }] },
-                                { name: "Castanea", species: [{ name: "sativa", file: "roasted_nut_tree.txt", wikiQuery: "Sweet chestnut" }] }
+                                { name: "Quercus", species: [{ name: "robur", file: "english_oak.txt", wikiQuery: "Quercus robur" }] },
+                                { name: "Castanea", species: [{ name: "sativa", file: "sweet_chestnut.txt", wikiQuery: "Sweet chestnut" }] }
                               ]
                             }
                           ]
@@ -1388,13 +1515,13 @@
                             {
                               name: "Droseraceae",
                               genera: [
-                                { name: "Dionaea", species: [{ name: "muscipula", file: "snap_jaw_trap.txt", wikiQuery: "Venus flytrap" }] }
+                                { name: "Dionaea", species: [{ name: "muscipula", file: "venus_flytrap.txt", wikiQuery: "Venus flytrap" }] }
                               ]
                             },
                             {
                               name: "Cactaceae",
                               genera: [
-                                { name: "Carnegiea", species: [{ name: "gigantea", file: "desert_monolith.txt", wikiQuery: "Saguaro" }] }
+                                { name: "Carnegiea", species: [{ name: "gigantea", file: "saguaro_cactus.txt", wikiQuery: "Saguaro" }] }
                               ]
                             }
                           ]
@@ -1405,8 +1532,8 @@
                             {
                               name: "Brassicaceae",
                               genera: [
-                                { name: "Brassica", species: [{ name: "oleracea", file: "cabbage_kale_master.txt", wikiQuery: "Brassica oleracea" }] },
-                                { name: "Arabidopsis", species: [{ name: "thaliana", file: "lab_guinea_plant.txt", wikiQuery: "Arabidopsis thaliana" }] }
+                                { name: "Brassica", species: [{ name: "oleracea", file: "wild_cabbage.txt", wikiQuery: "Brassica oleracea" }] },
+                                { name: "Arabidopsis", species: [{ name: "thaliana", file: "thale_cress.txt", wikiQuery: "Arabidopsis thaliana" }] }
                               ]
                             }
                           ]
@@ -1422,10 +1549,10 @@
                             {
                               name: "Poaceae",
                               genera: [
-                                { name: "Triticum", species: [{ name: "aestivum", file: "golden_bread_grain.txt", wikiQuery: "Common wheat" }] },
-                                { name: "Oryza", species: [{ name: "sativa", file: "staple_paddy_crop.txt", wikiQuery: "Rice" }] },
-                                { name: "Zea", species: [{ name: "mays", file: "yellow_kernel_cob.txt", wikiQuery: "Maize" }] },
-                                { name: "Bambusa", species: [{ name: "vulgaris", file: "rapid_tall_grass.txt", wikiQuery: "Bambusa vulgaris" }] }
+                                { name: "Triticum", species: [{ name: "aestivum", file: "wheat.txt", wikiQuery: "Common wheat" }] },
+                                { name: "Oryza", species: [{ name: "sativa", file: "rice.txt", wikiQuery: "Rice" }] },
+                                { name: "Zea", species: [{ name: "mays", file: "corn_maize.txt", wikiQuery: "Maize" }] },
+                                { name: "Bambusa", species: [{ name: "vulgaris", file: "common_bamboo.txt", wikiQuery: "Bambusa vulgaris" }] }
                               ]
                             }
                           ]
@@ -1436,7 +1563,7 @@
                             {
                               name: "Arecaceae",
                               genera: [
-                                { name: "Cocos", species: [{ name: "nucifera", file: "island_nut_palm.txt", wikiQuery: "Coconut" }] }
+                                { name: "Cocos", species: [{ name: "nucifera", file: "coconut_palm.txt", wikiQuery: "Coconut" }] }
                               ]
                             }
                           ]
@@ -1452,14 +1579,14 @@
                             {
                               name: "Pinaceae",
                               genera: [
-                                { name: "Pinus", species: [{ name: "longaeva", file: "five_thousand_year_wood.txt", wikiQuery: "Pinus longaeva" }] }
+                                { name: "Pinus", species: [{ name: "longaeva", file: "bristlecone_pine.txt", wikiQuery: "Pinus longaeva" }] }
                               ]
                             },
                             {
                               name: "Cupressaceae",
                               genera: [
-                                { name: "Sequoiadendron", species: [{ name: "giganteum", file: "forest_titan.txt", wikiQuery: "Sequoiadendron giganteum" }] },
-                                { name: "Sequoia", species: [{ name: "sempervirens", file: "sky_scraper_tree.txt", wikiQuery: "Sequoia sempervirens" }] }
+                                { name: "Sequoiadendron", species: [{ name: "giganteum", file: "giant_sequoia.txt", wikiQuery: "Sequoiadendron giganteum" }] },
+                                { name: "Sequoia", species: [{ name: "sempervirens", file: "coast_redwood.txt", wikiQuery: "Sequoia sempervirens" }] }
                               ]
                             }
                           ]
@@ -1480,7 +1607,7 @@
                             {
                               name: "Sphagnaceae",
                               genera: [
-                                { name: "Sphagnum", species: [{ name: "magellanicum", file: "bog_builder.txt", wikiQuery: "Sphagnum magellanicum" }] }
+                                { name: "Sphagnum", species: [{ name: "magellanicum", file: "peat_moss.txt", wikiQuery: "Sphagnum magellanicum" }] }
                               ]
                             }
                           ]
@@ -1506,25 +1633,25 @@
                             {
                               name: "Agaricaceae",
                               genera: [
-                                { name: "Agaricus", species: [{ name: "bisporus", file: "store_shelf_shroom.txt", wikiQuery: "Agaricus bisporus" }] }
+                                { name: "Agaricus", species: [{ name: "bisporus", file: "button_mushroom.txt", wikiQuery: "Agaricus bisporus" }] }
                               ]
                             },
                             {
                               name: "Amanitaceae",
                               genera: [
-                                { name: "Amanita", species: [{ name: "muscaria", file: "red_white_toadstool.txt", wikiQuery: "Amanita muscaria" }, { name: "phalloides", file: "liver_destroyer.txt", wikiQuery: "Amanita phalloides" }] }
+                                { name: "Amanita", species: [{ name: "muscaria", file: "fly_agaric.txt", wikiQuery: "Amanita muscaria" }, { name: "phalloides", file: "death_cap.txt", wikiQuery: "Amanita phalloides" }] }
                               ]
                             },
                             {
                               name: "Psathyrellaceae",
                               genera: [
-                                { name: "Coprinellus", species: [{ name: "micaceus", file: "inky_melter.txt", wikiQuery: "Coprinellus micaceus" }] }
+                                { name: "Coprinellus", species: [{ name: "micaceus", file: "glistening_inkcap.txt", wikiQuery: "Coprinellus micaceus" }] }
                               ]
                             },
                             {
                               name: "Hymenogastraceae",
                               genera: [
-                                { name: "Psilocybe", species: [{ name: "cubensis", file: "reality_bender.txt", wikiQuery: "Psilocybe cubensis" }] }
+                                { name: "Psilocybe", species: [{ name: "cubensis", file: "magic_mushroom.txt", wikiQuery: "Psilocybe cubensis" }] }
                               ]
                             }
                           ]
@@ -1535,7 +1662,7 @@
                             {
                               name: "Boletaceae",
                               genera: [
-                                { name: "Boletus", species: [{ name: "edulis", file: "king_porcini.txt", wikiQuery: "Boletus edulis" }] }
+                                { name: "Boletus", species: [{ name: "edulis", file: "porcini.txt", wikiQuery: "Boletus edulis" }] }
                               ]
                             }
                           ]
@@ -1556,13 +1683,8 @@
                             {
                               name: "Saccharomycetaceae",
                               genera: [
-                                { name: "Saccharomyces", species: [{ name: "cerevisiae", file: "bread_and_ale_yeast.txt", wikiQuery: "Saccharomyces cerevisiae" }] }
-                              ]
-                            },
-                            {
-                              name: "Saccharomycetaceae",
-                              genera: [
-                                { name: "Candida", species: [{ name: "albicans", file: "opportunistic_yeast.txt", wikiQuery: "Candida albicans" }] }
+                                { name: "Saccharomyces", species: [{ name: "cerevisiae", file: "bakers_yeast.txt", wikiQuery: "Saccharomyces cerevisiae" }] },
+                                { name: "Candida", species: [{ name: "albicans", file: "thrush_yeast.txt", wikiQuery: "Candida albicans" }] }
                               ]
                             }
                           ]
@@ -1578,7 +1700,7 @@
                             {
                               name: "Aspergillaceae",
                               genera: [
-                                { name: "Penicillium", species: [{ name: "chrysogenum", file: "wonder_antibiotic.txt", wikiQuery: "Penicillium chrysogenum" }] },
+                                { name: "Penicillium", species: [{ name: "chrysogenum", file: "penicillin_mold.txt", wikiQuery: "Penicillium chrysogenum" }] },
                                 { name: "Aspergillus", species: [{ name: "niger", file: "black_mold.txt", wikiQuery: "Aspergillus niger" }] }
                               ]
                             }
@@ -1595,13 +1717,13 @@
                             {
                               name: "Tuberaceae",
                               genera: [
-                                { name: "Tuber", species: [{ name: "magnatum", file: "white_gold_truffle.txt", wikiQuery: "Tuber magnatum" }] }
+                                { name: "Tuber", species: [{ name: "magnatum", file: "white_truffle.txt", wikiQuery: "Tuber magnatum" }] }
                               ]
                             },
                             {
                               name: "Morchellaceae",
                               genera: [
-                                { name: "Morchella", species: [{ name: "esculenta", file: "honeycomb_morel.txt", wikiQuery: "Morchella esculenta" }] }
+                                { name: "Morchella", species: [{ name: "esculenta", file: "yellow_morel.txt", wikiQuery: "Morchella esculenta" }] }
                               ]
                             }
                           ]
@@ -1617,7 +1739,7 @@
                             {
                               name: "Ophiocordycipitaceae",
                               genera: [
-                                { name: "Ophiocordyceps", species: [{ name: "unilateralis", file: "zombie_ant_controller.txt", wikiQuery: "Ophiocordyceps unilateralis" }] }
+                                { name: "Ophiocordyceps", species: [{ name: "unilateralis", file: "zombie_ant_fungus.txt", wikiQuery: "Ophiocordyceps unilateralis" }] }
                               ]
                             }
                           ]
@@ -1632,6 +1754,14 @@
         }
       ]
     };
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
 
     function buildTree(raw) {
       function parseNode(node) {
@@ -1705,7 +1835,9 @@
         return;
       }
 
-      current.children.forEach(child => {
+      const displayItems = shuffleArray([...current.children]);
+
+      displayItems.forEach(child => {
         const node = document.createElement("div");
         node.className = "node";
 
@@ -1737,7 +1869,7 @@
       try {
         const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
         const res = await fetch(url);
-        if (!res.ok) throw new Error("Lookup fail");
+        if (!res.ok) throw new Error("Lookup failed");
         return await res.json();
       } catch (e) {
         return null;
@@ -1747,7 +1879,7 @@
     async function inspectFile(file) {
       if (file.isTarget) {
         timerRunning = false;
-        modalTitle.innerText = "🏆 YOU CONQUERED THE TAXONOMY DUNGEON!";
+        modalTitle.innerText = "🏆 YOU CONQUERED THE IMPOSSIBLE MAZE!";
         modalTitle.style.color = "var(--win)";
       } else {
         modalTitle.innerText = `📄 ${file.name}`;
@@ -1755,7 +1887,7 @@
       }
 
       wikiHeader.style.display = "none";
-      modalContent.innerHTML = `<div style="display:flex; align-items:center; gap:8px;"><span class="spinner"></span> Querying Wikipedia API...</div>`;
+      modalContent.innerHTML = `<div style="display:flex; align-items:center; gap:8px;"><span class="spinner"></span> Pulling Wikipedia taxonomy briefing...</div>`;
       modalEl.classList.add("active");
 
       const wiki = await fetchWikipediaData(file.wikiQuery);
@@ -1769,21 +1901,21 @@
         }
 
         wikiHeading.innerText = wiki.title || file.name;
-        wikiDescription.innerText = wiki.description ? `(${wiki.description})` : "Taxon Entry";
+        wikiDescription.innerText = wiki.description ? `(${wiki.description})` : "Taxon Information";
         wikiHeader.style.display = "flex";
 
         let textOutput = "";
         if (file.isTarget) {
           textOutput += "=====================================================\n";
-          textOutput += ">>> 🎯 WIN CONDITION ACHIEVED! 🎯 <<<\n";
-          textOutput += `Total Time: ${document.getElementById("timerVal").innerText}\n`;
-          textOutput += `Wrong Branches Chosen: ${mistakes}\n`;
-          textOutput += "Full Path: Archaea/Bacteria/Eukaryota -> Eukaryota -> Animalia -> Chordata -> Mammalia -> Primates -> Hominidae -> Homo -> sapiens\n";
+          textOutput += ">>> 🎯 WIN CONDITION VERIFIED! 🎯 <<<\n";
+          textOutput += `Final Time: ${document.getElementById("timerVal").innerText}\n`;
+          textOutput += `Wrong Branches Clicked: ${mistakes}\n`;
+          textOutput += "Taxon: Eukaryota -> Animalia -> Chordata -> Mammalia -> Primates -> Hominidae -> Homo -> sapiens\n";
           textOutput += "=====================================================\n\n";
         }
 
         textOutput += `[SOURCE: Wikipedia REST API]\n\n${wiki.extract}\n\n`;
-        textOutput += `Wikipedia Article: ${wiki.content_urls ? wiki.content_urls.desktop.page : `https://en.wikipedia.org/wiki/${file.wikiQuery}`}`;
+        textOutput += `Wikipedia Page: ${wiki.content_urls ? wiki.content_urls.desktop.page : `https://en.wikipedia.org/wiki/${file.wikiQuery}`}`;
 
         modalContent.innerText = textOutput;
       } else {
