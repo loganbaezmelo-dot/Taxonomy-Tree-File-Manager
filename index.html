@@ -230,7 +230,6 @@
   </div>
 
   <script>
-    // Data definition for the huge multi-branch taxonomy system
     const rawTaxonomy = {
       name: "Domain Eukaryota",
       kingdoms: [
@@ -890,12 +889,15 @@
       ]
     };
 
-    // Recursive transformer into a folder / file tree
     function buildTree(raw) {
-      function parseNode(node, typeKey, nextKey) {
+      function parseNode(node) {
         const item = { name: node.name, type: "folder", children: [] };
-        if (node[nextKey]) {
-          item.children = node[nextKey].map(sub => parseNode(sub, nextKey, getChildKey(nextKey)));
+        
+        const keys = ["kingdoms", "phyla", "classes", "orders", "families", "genera"];
+        let nextKey = keys.find(k => node[k]);
+
+        if (nextKey) {
+          item.children = node[nextKey].map(sub => parseNode(sub));
         } else if (node.species) {
           item.children = node.species.map(sp => {
             return {
@@ -915,17 +917,7 @@
         return item;
       }
 
-      function getChildKey(current) {
-        if (current === "kingdoms") return "phyla";
-        if (current === "phyla") return "classes";
-        if (current === "classes") return "orders";
-        if (current === "orders") return "families";
-        if (current === "families") return "genera";
-        if (current === "genera") return "species";
-        return null;
-      }
-
-      return parseNode(raw, "root", "kingdoms");
+      return parseNode(raw);
     }
 
     const fileSystem = buildTree(rawTaxonomy);
@@ -942,7 +934,6 @@
       const current = navStack[navStack.length - 1];
       gridEl.innerHTML = "";
 
-      // Breadcrumb rendering
       breadcrumbEl.innerText = navStack.map(n => n.name).join(" / ");
       backBtn.disabled = navStack.length <= 1;
 
@@ -996,4 +987,3 @@
   </script>
 </body>
 </html>
-
