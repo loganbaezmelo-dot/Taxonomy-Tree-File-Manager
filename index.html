@@ -3,63 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxonomy Explorer - Find Homo Sapiens</title>
+  <title>Taxonomy Explorer - Massive Edition</title>
   <style>
     :root {
-      --bg-color: #1e1e2e;
-      --panel-bg: #181825;
-      --item-hover: #313244;
-      --text-main: #cdd6f4;
-      --text-muted: #a6adc8;
+      --bg: #11111b;
+      --panel: #181825;
+      --hover: #313244;
+      --text: #cdd6f4;
+      --muted: #6c7086;
       --accent: #89b4fa;
-      --win-color: #a6e3a1;
-      --folder-color: #f9e2af;
-      --file-color: #89dceb;
-      --danger: #f38ba8;
+      --win: #a6e3a1;
+      --folder: #f9e2af;
+      --border: #28283d;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       user-select: none;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 20px;
+      padding: 16px;
     }
 
     .window {
       width: 100%;
-      max-width: 900px;
-      height: 600px;
-      background-color: var(--panel-bg);
+      max-width: 1050px;
+      height: 720px;
+      background: var(--panel);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      border: 1px solid #313244;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
     }
 
-    .titlebar {
-      background-color: #11111b;
+    .header {
+      background: #11111b;
       padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #313244;
+      border-bottom: 1px solid var(--border);
     }
 
-    .titlebar-dots {
+    .controls {
       display: flex;
       gap: 8px;
     }
@@ -69,89 +68,87 @@
       height: 12px;
       border-radius: 50%;
     }
-    .dot.red { background: var(--danger); }
-    .dot.yellow { background: var(--folder-color); }
-    .dot.green { background: var(--win-color); }
+    .dot-red { background: #f38ba8; }
+    .dot-yellow { background: var(--folder); }
+    .dot-green { background: var(--win); }
 
-    .nav-bar {
+    .nav {
       padding: 10px 16px;
-      background-color: #181825;
+      background: var(--panel);
       display: flex;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid #313244;
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-btn {
+    .btn {
       background: #313244;
       border: none;
-      color: var(--text-main);
+      color: var(--text);
       padding: 6px 14px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
-      transition: 0.2s;
+      transition: 0.15s;
     }
 
-    .nav-btn:hover:not(:disabled) {
+    .btn:hover:not(:disabled) {
       background: var(--accent);
       color: #11111b;
     }
 
-    .nav-btn:disabled {
+    .btn:disabled {
       opacity: 0.3;
       cursor: not-allowed;
     }
 
-    .breadcrumb {
+    .breadcrumbs {
       display: flex;
       align-items: center;
       gap: 6px;
       background: #11111b;
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 6px;
       flex-grow: 1;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.8rem;
+      color: var(--muted);
       overflow-x: auto;
       white-space: nowrap;
     }
 
-    .content-area {
+    .grid {
       flex-grow: 1;
       padding: 20px;
       overflow-y: auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
       grid-auto-rows: max-content;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .item {
+    .node {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 14px 8px;
+      padding: 12px 6px;
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
       transition: background 0.15s, transform 0.1s;
     }
 
-    .item:hover {
-      background-color: var(--item-hover);
+    .node:hover {
+      background: var(--hover);
       transform: translateY(-2px);
     }
 
-    .item-icon {
-      font-size: 42px;
-      margin-bottom: 8px;
+    .node-icon {
+      font-size: 38px;
+      margin-bottom: 6px;
     }
 
-    .item-name {
-      font-size: 0.85rem;
-      color: var(--text-main);
+    .node-name {
+      font-size: 0.8rem;
       word-break: break-word;
       line-height: 1.2;
     }
@@ -160,7 +157,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       align-items: center;
       justify-content: center;
       z-index: 100;
@@ -170,176 +167,234 @@
       display: flex;
     }
 
-    .modal-card {
-      background: var(--panel-bg);
+    .modal-box {
+      background: var(--panel);
       border: 1px solid var(--accent);
       border-radius: 12px;
-      max-width: 500px;
+      max-width: 520px;
       width: 90%;
       padding: 24px;
-      text-align: center;
-      animation: pop 0.25s ease-out;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
     .modal-title {
-      font-size: 1.6rem;
-      color: var(--win-color);
+      font-size: 1.3rem;
+      color: var(--accent);
       margin-bottom: 12px;
     }
 
-    .modal-body {
+    .modal-content {
       background: #11111b;
-      padding: 16px;
+      padding: 14px;
       border-radius: 8px;
       font-family: monospace;
-      color: var(--text-main);
-      text-align: left;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 20px;
+      color: var(--text);
+      font-size: 0.85rem;
+      line-height: 1.45;
+      margin-bottom: 18px;
       white-space: pre-wrap;
-    }
-
-    .close-btn {
-      background: var(--win-color);
-      color: #11111b;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
+      max-height: 280px;
+      overflow-y: auto;
     }
   </style>
 </head>
 <body>
 
   <div class="window">
-    <div class="titlebar">
-      <div class="titlebar-dots">
-        <div class="dot red"></div>
-        <div class="dot yellow"></div>
-        <div class="dot green"></div>
+    <div class="header">
+      <div class="controls">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
       </div>
-      <div style="font-size: 0.85rem; color: var(--text-muted);">Root Explorer - Locate Homo sapiens</div>
+      <div style="font-size: 0.8rem; color: var(--muted);">Massive Tree of Life File Manager</div>
       <div></div>
     </div>
 
-    <div class="nav-bar">
-      <button id="backBtn" class="nav-btn" disabled>← Up</button>
-      <div id="breadcrumb" class="breadcrumb">📁 Root</div>
+    <div class="nav">
+      <button id="backBtn" class="btn" disabled>← Up</button>
+      <div id="breadcrumb" class="breadcrumbs">📁 Root</div>
     </div>
 
-    <div id="fileGrid" class="content-area"></div>
+    <div id="grid" class="grid"></div>
   </div>
 
-  <div id="winModal" class="modal">
-    <div class="modal-card">
-      <div class="modal-title">🎉 YOU FOUND IT! 🎉</div>
-      <div id="fileContent" class="modal-body"></div>
-      <button class="close-btn" onclick="closeModal()">Close</button>
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <div id="modalTitle" class="modal-title">File Inspector</div>
+      <div id="modalContent" class="modal-content"></div>
+      <div style="text-align: right;">
+        <button class="btn" style="background: var(--win); color: #11111b;" onclick="closeModal()">Close</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const taxonomyData = {
-      name: "Root",
-      type: "folder",
-      children: [
+    // Data definition for the huge multi-branch taxonomy system
+    const rawTaxonomy = {
+      name: "Domain Eukaryota",
+      kingdoms: [
         {
           name: "Kingdom Animalia",
-          type: "folder",
-          children: [
+          phyla: [
             {
               name: "Phylum Chordata",
-              type: "folder",
-              children: [
+              classes: [
                 {
                   name: "Class Mammalia",
-                  type: "folder",
-                  children: [
+                  orders: [
                     {
                       name: "Order Primates",
-                      type: "folder",
-                      children: [
+                      families: [
                         {
                           name: "Family Hominidae",
-                          type: "folder",
-                          children: [
+                          genera: [
                             {
                               name: "Genus Homo",
-                              type: "folder",
-                              children: [
-                                {
-                                  name: "Species Homo sapiens",
-                                  type: "folder",
-                                  children: [
-                                    {
-                                      name: "human.txt",
-                                      type: "file",
-                                      content: "YOU WIN! 💀\n\nTaxonomic Path:\nDomain: Eukaryota\nKingdom: Animalia\nPhylum: Chordata\nClass: Mammalia\nOrder: Primates\nFamily: Hominidae\nGenus: Homo\nSpecies: Homo sapiens\n\nCongrats on navigating the entire hierarchy!"
-                                    }
-                                  ]
-                                },
-                                {
-                                  name: "Species Homo neanderthalensis",
-                                  type: "folder",
-                                  children: [
-                                    { name: "neanderthal.txt", type: "file", content: "Extinct hominid. Not quite human.txt 💀" }
-                                  ]
-                                }
+                              species: [
+                                { name: "Species Homo sapiens", file: "human.txt", isTarget: true, desc: "YOU WIN! 💀\n\nFull lineage trace:\nDomain: Eukaryota\nKingdom: Animalia\nPhylum: Chordata\nClass: Mammalia\nOrder: Primates\nFamily: Hominidae\nGenus: Homo\nSpecies: Homo sapiens\n\nYou found the human file in the giant taxonomy maze!" },
+                                { name: "Species Homo neanderthalensis", file: "neanderthal.txt", desc: "Extinct archaic humans who lived in Eurasia until about 40,000 years ago 💀." },
+                                { name: "Species Homo erectus", file: "erectus.txt", desc: "Early human species surviving throughout the Pleistocene." },
+                                { name: "Species Homo habilis", file: "habilis.txt", desc: "Handy man - one of the earliest members of the genus Homo." }
                               ]
                             },
                             {
                               name: "Genus Pan",
-                              type: "folder",
-                              children: [
-                                {
-                                  name: "Species Pan troglodytes",
-                                  type: "folder",
-                                  children: [{ name: "chimp.txt", type: "file", content: "Chimpanzee folder. Close, but not Homo sapiens 💀" }]
-                                }
+                              species: [
+                                { name: "Species Pan troglodytes", file: "chimpanzee.txt", desc: "Common chimpanzee. Genetically very close to Homo sapiens." },
+                                { name: "Species Pan paniscus", file: "bonobo.txt", desc: "Bonobo ape native to the Congo Basin." }
+                              ]
+                            },
+                            {
+                              name: "Genus Gorilla",
+                              species: [
+                                { name: "Species Gorilla gorilla", file: "western_gorilla.txt", desc: "Western gorilla inhabiting central Africa." },
+                                { name: "Species Gorilla beringei", file: "eastern_gorilla.txt", desc: "Eastern gorilla including mountain gorillas." }
+                              ]
+                            },
+                            {
+                              name: "Genus Pongo",
+                              species: [
+                                { name: "Species Pongo pygmaeus", file: "bornean_orangutan.txt", desc: "Bornean orangutan native to the island of Borneo." },
+                                { name: "Species Pongo abelii", file: "sumatran_orangutan.txt", desc: "Sumatran orangutan native to Sumatra." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Cercopithecidae",
+                          genera: [
+                            {
+                              name: "Genus Macaca",
+                              species: [
+                                { name: "Species Macaca mulatta", file: "rhesus_macaque.txt", desc: "Rhesus macaque widely used in biological research." },
+                                { name: "Species Macaca fascicularis", file: "crab_eating_macaque.txt", desc: "Long-tailed macaque." }
+                              ]
+                            },
+                            {
+                              name: "Genus Papio",
+                              species: [
+                                { name: "Species Papio anubis", file: "olive_baboon.txt", desc: "Olive baboon found across 25 African countries." }
                               ]
                             }
                           ]
                         },
                         {
                           name: "Family Lemuridae",
-                          type: "folder",
-                          children: [{ name: "lemur.txt", type: "file", content: "Just a ring-tailed lemur chilling here." }]
+                          genera: [
+                            {
+                              name: "Genus Lemur",
+                              species: [
+                                { name: "Species Lemur catta", file: "ring_tailed_lemur.txt", desc: "Ring-tailed lemur endemic to Madagascar." }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
                     {
                       name: "Order Carnivora",
-                      type: "folder",
-                      children: [
+                      families: [
                         {
                           name: "Family Felidae",
-                          type: "folder",
-                          children: [
+                          genera: [
                             {
                               name: "Genus Panthera",
-                              type: "folder",
-                              children: [
-                                { name: "Species Panthera leo", type: "folder", children: [{ name: "lion.txt", type: "file", content: "Roar! Dead end 💀" }] }
+                              species: [
+                                { name: "Species Panthera leo", file: "lion.txt", desc: "The lion is a large cat of the genus Panthera native to Africa and India." },
+                                { name: "Species Panthera tigris", file: "tiger.txt", desc: "Tiger - largest living cat species." },
+                                { name: "Species Panthera onca", file: "jaguar.txt", desc: "Jaguar - native to the Americas." }
+                              ]
+                            },
+                            {
+                              name: "Genus Felis",
+                              species: [
+                                { name: "Species Felis catus", file: "domestic_cat.txt", desc: "Small domesticated carnivorous mammal." },
+                                { name: "Species Felis silvestris", file: "wildcat.txt", desc: "European wildcat." }
                               ]
                             }
                           ]
                         },
                         {
                           name: "Family Canidae",
-                          type: "folder",
-                          children: [
+                          genera: [
                             {
                               name: "Genus Canis",
-                              type: "folder",
-                              children: [
-                                { name: "Species Canis lupus", type: "folder", children: [{ name: "wolf.txt", type: "file", content: "Wolf territory." }] }
+                              species: [
+                                { name: "Species Canis lupus", file: "wolf.txt", desc: "Gray wolf native to Eurasia and North America." },
+                                { name: "Species Canis latrans", file: "coyote.txt", desc: "Coyote native to North America." }
+                              ]
+                            },
+                            {
+                              name: "Genus Vulpes",
+                              species: [
+                                { name: "Species Vulpes vulpes", file: "red_fox.txt", desc: "Red fox - largest of the true foxes." },
+                                { name: "Species Vulpes lagopus", file: "arctic_fox.txt", desc: "Arctic fox adapted to frigid environments." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Ursidae",
+                          genera: [
+                            {
+                              name: "Genus Ursus",
+                              species: [
+                                { name: "Species Ursus arctos", file: "brown_bear.txt", desc: "Brown bear widely distributed across Eurasia and North America." },
+                                { name: "Species Ursus maritimus", file: "polar_bear.txt", desc: "Hypercarnivorous bear endemic to the Arctic Circle." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Cetacea",
+                      families: [
+                        {
+                          name: "Family Balaenopteridae",
+                          genera: [
+                            {
+                              name: "Genus Balaenoptera",
+                              species: [
+                                { name: "Species Balaenoptera musculus", file: "blue_whale.txt", desc: "Blue whale - largest animal known to have ever lived." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Delphinidae",
+                          genera: [
+                            {
+                              name: "Genus Orcinus",
+                              species: [
+                                { name: "Species Orcinus orca", file: "killer_whale.txt", desc: "Orca - apex predator belonging to the dolphin family." }
+                              ]
+                            },
+                            {
+                              name: "Genus Tursiops",
+                              species: [
+                                { name: "Species Tursiops truncatus", file: "bottlenose_dolphin.txt", desc: "Common bottlenose dolphin." }
                               ]
                             }
                           ]
@@ -348,38 +403,312 @@
                     },
                     {
                       name: "Order Rodentia",
-                      type: "folder",
-                      children: [
-                        { name: "Family Muridae", type: "folder", children: [{ name: "mouse.txt", type: "file", content: "Squeak!" }] }
+                      families: [
+                        {
+                          name: "Family Muridae",
+                          genera: [
+                            {
+                              name: "Genus Mus",
+                              species: [
+                                { name: "Species Mus musculus", file: "house_mouse.txt", desc: "House mouse." }
+                              ]
+                            },
+                            {
+                              name: "Genus Rattus",
+                              species: [
+                                { name: "Species Rattus norvegicus", file: "brown_rat.txt", desc: "Brown rat / Norway rat." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Sciuridae",
+                          genera: [
+                            {
+                              name: "Genus Sciurus",
+                              species: [
+                                { name: "Species Sciurus carolinensis", file: "gray_squirrel.txt", desc: "Eastern gray squirrel." }
+                              ]
+                            }
+                          ]
+                        }
                       ]
                     }
                   ]
                 },
                 {
                   name: "Class Aves",
-                  type: "folder",
-                  children: [
-                    { name: "Order Passeriformes", type: "folder", children: [{ name: "sparrow.txt", type: "file", content: "Birds only!" }] }
+                  orders: [
+                    {
+                      name: "Order Accipitriformes",
+                      families: [
+                        {
+                          name: "Family Accipitridae",
+                          genera: [
+                            {
+                              name: "Genus Haliaeetus",
+                              species: [
+                                { name: "Species Haliaeetus leucocephalus", file: "bald_eagle.txt", desc: "Bald eagle - sea eagle endemic to North America." }
+                              ]
+                            },
+                            {
+                              name: "Genus Aquila",
+                              species: [
+                                { name: "Species Aquila chrysaetos", file: "golden_eagle.txt", desc: "Golden eagle - agile raptor of the Northern Hemisphere." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Strigiformes",
+                      families: [
+                        {
+                          name: "Family Strigidae",
+                          genera: [
+                            {
+                              name: "Genus Bubo",
+                              species: [
+                                { name: "Species Bubo scandiacus", file: "snowy_owl.txt", desc: "Snowy owl native to the Arctic tundra." },
+                                { name: "Species Bubo virginianus", file: "great_horned_owl.txt", desc: "Great horned owl of the Americas." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
                   name: "Class Reptilia",
-                  type: "folder",
-                  children: [
-                    { name: "Order Squamata", type: "folder", children: [{ name: "gecko.txt", type: "file", content: "Cold blooded path." }] }
+                  orders: [
+                    {
+                      name: "Order Squamata",
+                      families: [
+                        {
+                          name: "Family Viperidae",
+                          genera: [
+                            {
+                              name: "Genus Crotalus",
+                              species: [
+                                { name: "Species Crotalus atrox", file: "rattlesnake.txt", desc: "Western diamondback rattlesnake." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Varanidae",
+                          genera: [
+                            {
+                              name: "Genus Varanus",
+                              species: [
+                                { name: "Species Varanus komodoensis", file: "komodo_dragon.txt", desc: "Komodo dragon - largest living lizard." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Crocodilia",
+                      families: [
+                        {
+                          name: "Family Crocodylidae",
+                          genera: [
+                            {
+                              name: "Genus Crocodylus",
+                              species: [
+                                { name: "Species Crocodylus niloticus", file: "nile_crocodile.txt", desc: "Nile crocodile." },
+                                { name: "Species Crocodylus porosus", file: "saltwater_crocodile.txt", desc: "Saltwater crocodile - largest living reptile." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
             },
             {
               name: "Phylum Arthropoda",
-              type: "folder",
-              children: [
+              classes: [
                 {
                   name: "Class Insecta",
-                  type: "folder",
-                  children: [
-                    { name: "Order Coleoptera", type: "folder", children: [{ name: "beetle.txt", type: "file", content: "Beetle bug!" }] }
+                  orders: [
+                    {
+                      name: "Order Coleoptera",
+                      families: [
+                        {
+                          name: "Family Scarabaeidae",
+                          genera: [
+                            {
+                              name: "Genus Scarabaeus",
+                              species: [
+                                { name: "Species Scarabaeus sacer", file: "sacred_scarab.txt", desc: "Sacred dung beetle revered in Ancient Egypt." }
+                              ]
+                            },
+                            {
+                              name: "Genus Dynastes",
+                              species: [
+                                { name: "Species Dynastes hercules", file: "hercules_beetle.txt", desc: "Hercules beetle famous for its immense horn structure." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Coccinellidae",
+                          genera: [
+                            {
+                              name: "Genus Coccinella",
+                              species: [
+                                { name: "Species Coccinella septempunctata", file: "ladybug.txt", desc: "Seven-spot ladybird." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Hymenoptera",
+                      families: [
+                        {
+                          name: "Family Apidae",
+                          genera: [
+                            {
+                              name: "Genus Apis",
+                              species: [
+                                { name: "Species Apis mellifera", file: "western_honey_bee.txt", desc: "Western honey bee - premier pollinator species." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Formicidae",
+                          genera: [
+                            {
+                              name: "Genus Solenopsis",
+                              species: [
+                                { name: "Species Solenopsis invicta", file: "red_fire_ant.txt", desc: "Red imported fire ant with aggressive sting." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Lepidoptera",
+                      families: [
+                        {
+                          name: "Family Nymphalidae",
+                          genera: [
+                            {
+                              name: "Genus Danaus",
+                              species: [
+                                { name: "Species Danaus plexippus", file: "monarch_butterfly.txt", desc: "Monarch butterfly known for long-distance migration." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Class Arachnida",
+                  orders: [
+                    {
+                      name: "Order Araneae",
+                      families: [
+                        {
+                          name: "Family Theridiidae",
+                          genera: [
+                            {
+                              name: "Genus Latrodectus",
+                              species: [
+                                { name: "Species Latrodectus mactans", file: "black_widow.txt", desc: "Southern black widow spider containing latrotoxin." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Theraphosidae",
+                          genera: [
+                            {
+                              name: "Genus Theraphosa",
+                              species: [
+                                { name: "Species Theraphosa blondi", file: "goliath_birdeater.txt", desc: "Goliath birdeater - largest spider by mass." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Scorpiones",
+                      families: [
+                        {
+                          name: "Family Buthidae",
+                          genera: [
+                            {
+                              name: "Genus Androctonus",
+                              species: [
+                                { name: "Species Androctonus australis", file: "fattail_scorpion.txt", desc: "Fattail scorpion - highly venomous desert scorpion." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Phylum Mollusca",
+              classes: [
+                {
+                  name: "Class Cephalopoda",
+                  orders: [
+                    {
+                      name: "Order Octopoda",
+                      families: [
+                        {
+                          name: "Family Octopodidae",
+                          genera: [
+                            {
+                              name: "Genus Octopus",
+                              species: [
+                                { name: "Species Octopus vulgaris", file: "common_octopus.txt", desc: "Common octopus with high cognitive capability." }
+                              ]
+                            },
+                            {
+                              name: "Genus Hapalochlaena",
+                              species: [
+                                { name: "Species Hapalochlaena lunulata", file: "blue_ringed_octopus.txt", desc: "Blue-ringed octopus carrying tetrodotoxin." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Teuthida",
+                      families: [
+                        {
+                          name: "Family Architeuthidae",
+                          genera: [
+                            {
+                              name: "Genus Architeuthis",
+                              species: [
+                                { name: "Species Architeuthis dux", file: "giant_squid.txt", desc: "Giant squid dwelling in deep oceanic waters." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -388,17 +717,101 @@
         },
         {
           name: "Kingdom Plantae",
-          type: "folder",
-          children: [
+          phyla: [
             {
               name: "Phylum Tracheophyta",
-              type: "folder",
-              children: [
+              classes: [
                 {
                   name: "Class Magnoliopsida",
-                  type: "folder",
-                  children: [
-                    { name: "Order Rosales", type: "folder", children: [{ name: "rose.txt", type: "file", content: "Wrong kingdom entirely 💀" }] }
+                  orders: [
+                    {
+                      name: "Order Rosales",
+                      families: [
+                        {
+                          name: "Family Rosaceae",
+                          genera: [
+                            {
+                              name: "Genus Rosa",
+                              species: [
+                                { name: "Species Rosa gallica", file: "french_rose.txt", desc: "French rose - fragrant flowering shrub." }
+                              ]
+                            },
+                            {
+                              name: "Genus Malus",
+                              species: [
+                                { name: "Species Malus domestica", file: "apple_tree.txt", desc: "Domesticated apple tree." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Solanales",
+                      families: [
+                        {
+                          name: "Family Solanaceae",
+                          genera: [
+                            {
+                              name: "Genus Solanum",
+                              species: [
+                                { name: "Species Solanum lycopersicum", file: "tomato.txt", desc: "Tomato plant." },
+                                { name: "Species Solanum tuberosum", file: "potato.txt", desc: "Potato plant." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Order Fagales",
+                      families: [
+                        {
+                          name: "Family Fagaceae",
+                          genera: [
+                            {
+                              name: "Genus Quercus",
+                              species: [
+                                { name: "Species Quercus robur", file: "english_oak.txt", desc: "Pedunculate oak tree." },
+                                { name: "Species Quercus alba", file: "white_oak.txt", desc: "North American white oak." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Class Pinopsida",
+                  orders: [
+                    {
+                      name: "Order Pinales",
+                      families: [
+                        {
+                          name: "Family Pinaceae",
+                          genera: [
+                            {
+                              name: "Genus Pinus",
+                              species: [
+                                { name: "Species Pinus sylvestris", file: "scots_pine.txt", desc: "Scots pine conifer." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Cupressaceae",
+                          genera: [
+                            {
+                              name: "Genus Sequoiadendron",
+                              species: [
+                                { name: "Species Sequoiadendron giganteum", file: "giant_sequoia.txt", desc: "Giant sequoia - massive long-lived tree." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -407,13 +820,69 @@
         },
         {
           name: "Kingdom Fungi",
-          type: "folder",
-          children: [
+          phyla: [
             {
               name: "Phylum Basidiomycota",
-              type: "folder",
-              children: [
-                { name: "mushroom.txt", type: "file", content: "Mushrooms, not humans 💀" }
+              classes: [
+                {
+                  name: "Class Agaricomycetes",
+                  orders: [
+                    {
+                      name: "Order Agaricales",
+                      families: [
+                        {
+                          name: "Family Agaricaceae",
+                          genera: [
+                            {
+                              name: "Genus Agaricus",
+                              species: [
+                                { name: "Species Agaricus bisporus", file: "button_mushroom.txt", desc: "Common edible button/portobello mushroom." }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Family Amanitaceae",
+                          genera: [
+                            {
+                              name: "Genus Amanita",
+                              species: [
+                                { name: "Species Amanita muscaria", file: "fly_agaric.txt", desc: "Fly agaric - iconic red toadstool with white spots." },
+                                { name: "Species Amanita phalloides", file: "death_cap.txt", desc: "Death cap - deadly toxic poisonous mushroom 💀." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Phylum Ascomycota",
+              classes: [
+                {
+                  name: "Class Saccharomycetes",
+                  orders: [
+                    {
+                      name: "Order Saccharomycetales",
+                      families: [
+                        {
+                          name: "Family Saccharomycetaceae",
+                          genera: [
+                            {
+                              name: "Genus Saccharomyces",
+                              species: [
+                                { name: "Species Saccharomyces cerevisiae", file: "bakers_yeast.txt", desc: "Brewer's and baker's yeast." }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
               ]
             }
           ]
@@ -421,67 +890,110 @@
       ]
     };
 
-    let pathStack = [taxonomyData];
+    // Recursive transformer into a folder / file tree
+    function buildTree(raw) {
+      function parseNode(node, typeKey, nextKey) {
+        const item = { name: node.name, type: "folder", children: [] };
+        if (node[nextKey]) {
+          item.children = node[nextKey].map(sub => parseNode(sub, nextKey, getChildKey(nextKey)));
+        } else if (node.species) {
+          item.children = node.species.map(sp => {
+            return {
+              name: sp.name,
+              type: "folder",
+              children: [
+                {
+                  name: sp.file,
+                  type: "file",
+                  content: sp.desc,
+                  isTarget: !!sp.isTarget
+                }
+              ]
+            };
+          });
+        }
+        return item;
+      }
 
-    const fileGrid = document.getElementById("fileGrid");
-    const breadcrumb = document.getElementById("breadcrumb");
+      function getChildKey(current) {
+        if (current === "kingdoms") return "phyla";
+        if (current === "phyla") return "classes";
+        if (current === "classes") return "orders";
+        if (current === "orders") return "families";
+        if (current === "families") return "genera";
+        if (current === "genera") return "species";
+        return null;
+      }
+
+      return parseNode(raw, "root", "kingdoms");
+    }
+
+    const fileSystem = buildTree(rawTaxonomy);
+    let navStack = [fileSystem];
+
+    const gridEl = document.getElementById("grid");
+    const breadcrumbEl = document.getElementById("breadcrumb");
     const backBtn = document.getElementById("backBtn");
-    const winModal = document.getElementById("winModal");
-    const fileContent = document.getElementById("fileContent");
+    const modalEl = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
 
-    function renderCurrentFolder() {
-      const currentFolder = pathStack[pathStack.length - 1];
-      fileGrid.innerHTML = "";
+    function renderView() {
+      const current = navStack[navStack.length - 1];
+      gridEl.innerHTML = "";
 
-      // Update Breadcrumbs & Nav
-      breadcrumb.innerText = pathStack.map(p => p.name).join(" / ");
-      backBtn.disabled = pathStack.length <= 1;
+      // Breadcrumb rendering
+      breadcrumbEl.innerText = navStack.map(n => n.name).join(" / ");
+      backBtn.disabled = navStack.length <= 1;
 
-      if (!currentFolder.children || currentFolder.children.length === 0) {
-        fileGrid.innerHTML = `<div style="grid-column: 1/-1; color: var(--text-muted); text-align: center; padding: 40px;">(Empty Folder)</div>`;
+      if (!current.children || current.children.length === 0) {
+        gridEl.innerHTML = `<div style="grid-column: 1/-1; color: var(--muted); text-align: center; padding: 40px;">(Folder empty)</div>`;
         return;
       }
 
-      currentFolder.children.forEach(item => {
-        const el = document.createElement("div");
-        el.className = "item";
+      current.children.forEach(child => {
+        const node = document.createElement("div");
+        node.className = "node";
 
-        const icon = item.type === "folder" ? "📁" : "📄";
-        el.innerHTML = `
-          <div class="item-icon">${icon}</div>
-          <div class="item-name">${item.name}</div>
+        const icon = child.type === "folder" ? "📁" : (child.isTarget ? "🏆" : "📄");
+        node.innerHTML = `
+          <div class="node-icon">${icon}</div>
+          <div class="node-name">${child.name}</div>
         `;
 
-        el.addEventListener("click", () => {
-          if (item.type === "folder") {
-            pathStack.push(item);
-            renderCurrentFolder();
-          } else if (item.type === "file") {
-            openFile(item);
+        node.addEventListener("click", () => {
+          if (child.type === "folder") {
+            navStack.push(child);
+            renderView();
+          } else if (child.type === "file") {
+            inspectFile(child);
           }
         });
 
-        fileGrid.appendChild(el);
+        gridEl.appendChild(node);
       });
     }
 
-    function openFile(file) {
-      fileContent.innerText = file.content;
-      winModal.classList.add("active");
+    function inspectFile(file) {
+      modalTitle.innerText = file.isTarget ? "🎉 OBJECTIVE FOUND!" : `📄 ${file.name}`;
+      modalTitle.style.color = file.isTarget ? "var(--win)" : "var(--accent)";
+      modalContent.innerText = file.content;
+      modalEl.classList.add("active");
     }
 
     function closeModal() {
-      winModal.classList.remove("active");
+      modalEl.classList.remove("active");
     }
 
     backBtn.addEventListener("click", () => {
-      if (pathStack.length > 1) {
-        pathStack.pop();
-        renderCurrentFolder();
+      if (navStack.length > 1) {
+        navStack.pop();
+        renderView();
       }
     });
 
-    renderCurrentFolder();
+    renderView();
   </script>
 </body>
 </html>
+
