@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxonomy Explorer - Wikipedia Edition</title>
+  <title>Taxonomy Explorer - 3 Domains Edition</title>
   <style>
     :root {
       --bg: #11111b;
@@ -252,7 +252,7 @@
         <div class="dot dot-yellow"></div>
         <div class="dot dot-green"></div>
       </div>
-      <div style="font-size: 0.8rem; color: var(--muted);">Tree of Life Explorer - Live Wikipedia Integration</div>
+      <div style="font-size: 0.8rem; color: var(--muted);">Tree of Life Explorer - Root Domains</div>
       <div></div>
     </div>
 
@@ -283,202 +283,27 @@
 
   <script>
     const rawTaxonomy = {
-      name: "Domain Eukaryota",
-      kingdoms: [
+      name: "Root",
+      domains: [
         {
-          name: "Kingdom Animalia",
+          name: "Archaea",
           phyla: [
             {
-              name: "Phylum Chordata",
+              name: "Euryarchaeota",
               classes: [
                 {
-                  name: "Class Mammalia",
+                  name: "Methanobacteria",
                   orders: [
                     {
-                      name: "Order Primates",
+                      name: "Methanobacteriales",
                       families: [
                         {
-                          name: "Family Hominidae",
+                          name: "Methanobacteriaceae",
                           genera: [
                             {
-                              name: "Genus Homo",
+                              name: "Methanobrevibacter",
                               species: [
-                                { name: "Species Homo sapiens", file: "human.txt", wikiQuery: "Human", isTarget: true },
-                                { name: "Species Homo neanderthalensis", file: "neanderthal.txt", wikiQuery: "Neanderthal" },
-                                { name: "Species Homo erectus", file: "erectus.txt", wikiQuery: "Homo erectus" },
-                                { name: "Species Homo habilis", file: "habilis.txt", wikiQuery: "Homo habilis" }
-                              ]
-                            },
-                            {
-                              name: "Genus Pan",
-                              species: [
-                                { name: "Species Pan troglodytes", file: "chimpanzee.txt", wikiQuery: "Chimpanzee" },
-                                { name: "Species Pan paniscus", file: "bonobo.txt", wikiQuery: "Bonobo" }
-                              ]
-                            },
-                            {
-                              name: "Genus Gorilla",
-                              species: [
-                                { name: "Species Gorilla gorilla", file: "western_gorilla.txt", wikiQuery: "Western gorilla" },
-                                { name: "Species Gorilla beringei", file: "eastern_gorilla.txt", wikiQuery: "Eastern gorilla" }
-                              ]
-                            },
-                            {
-                              name: "Genus Pongo",
-                              species: [
-                                { name: "Species Pongo pygmaeus", file: "bornean_orangutan.txt", wikiQuery: "Bornean orangutan" },
-                                { name: "Species Pongo abelii", file: "sumatran_orangutan.txt", wikiQuery: "Sumatran orangutan" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Cercopithecidae",
-                          genera: [
-                            {
-                              name: "Genus Macaca",
-                              species: [
-                                { name: "Species Macaca mulatta", file: "rhesus_macaque.txt", wikiQuery: "Rhesus macaque" },
-                                { name: "Species Macaca fascicularis", file: "crab_eating_macaque.txt", wikiQuery: "Crab-eating macaque" }
-                              ]
-                            },
-                            {
-                              name: "Genus Papio",
-                              species: [
-                                { name: "Species Papio anubis", file: "olive_baboon.txt", wikiQuery: "Olive baboon" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Lemuridae",
-                          genera: [
-                            {
-                              name: "Genus Lemur",
-                              species: [
-                                { name: "Species Lemur catta", file: "ring_tailed_lemur.txt", wikiQuery: "Ring-tailed lemur" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Carnivora",
-                      families: [
-                        {
-                          name: "Family Felidae",
-                          genera: [
-                            {
-                              name: "Genus Panthera",
-                              species: [
-                                { name: "Species Panthera leo", file: "lion.txt", wikiQuery: "Lion" },
-                                { name: "Species Panthera tigris", file: "tiger.txt", wikiQuery: "Tiger" },
-                                { name: "Species Panthera onca", file: "jaguar.txt", wikiQuery: "Jaguar" }
-                              ]
-                            },
-                            {
-                              name: "Genus Felis",
-                              species: [
-                                { name: "Species Felis catus", file: "domestic_cat.txt", wikiQuery: "Cat" },
-                                { name: "Species Felis silvestris", file: "wildcat.txt", wikiQuery: "European wildcat" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Canidae",
-                          genera: [
-                            {
-                              name: "Genus Canis",
-                              species: [
-                                { name: "Species Canis lupus", file: "wolf.txt", wikiQuery: "Wolf" },
-                                { name: "Species Canis latrans", file: "coyote.txt", wikiQuery: "Coyote" }
-                              ]
-                            },
-                            {
-                              name: "Genus Vulpes",
-                              species: [
-                                { name: "Species Vulpes vulpes", file: "red_fox.txt", wikiQuery: "Red fox" },
-                                { name: "Species Vulpes lagopus", file: "arctic_fox.txt", wikiQuery: "Arctic fox" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Ursidae",
-                          genera: [
-                            {
-                              name: "Genus Ursus",
-                              species: [
-                                { name: "Species Ursus arctos", file: "brown_bear.txt", wikiQuery: "Brown bear" },
-                                { name: "Species Ursus maritimus", file: "polar_bear.txt", wikiQuery: "Polar bear" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Cetacea",
-                      families: [
-                        {
-                          name: "Family Balaenopteridae",
-                          genera: [
-                            {
-                              name: "Genus Balaenoptera",
-                              species: [
-                                { name: "Species Balaenoptera musculus", file: "blue_whale.txt", wikiQuery: "Blue whale" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Delphinidae",
-                          genera: [
-                            {
-                              name: "Genus Orcinus",
-                              species: [
-                                { name: "Species Orcinus orca", file: "killer_whale.txt", wikiQuery: "Orca" }
-                              ]
-                            },
-                            {
-                              name: "Genus Tursiops",
-                              species: [
-                                { name: "Species Tursiops truncatus", file: "bottlenose_dolphin.txt", wikiQuery: "Common bottlenose dolphin" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Rodentia",
-                      families: [
-                        {
-                          name: "Family Muridae",
-                          genera: [
-                            {
-                              name: "Genus Mus",
-                              species: [
-                                { name: "Species Mus musculus", file: "house_mouse.txt", wikiQuery: "House mouse" }
-                              ]
-                            },
-                            {
-                              name: "Genus Rattus",
-                              species: [
-                                { name: "Species Rattus norvegicus", file: "brown_rat.txt", wikiQuery: "Brown rat" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Sciuridae",
-                          genera: [
-                            {
-                              name: "Genus Sciurus",
-                              species: [
-                                { name: "Species Sciurus carolinensis", file: "gray_squirrel.txt", wikiQuery: "Eastern gray squirrel" }
+                                { name: "smithii", file: "gut_methanogen.txt", wikiQuery: "Methanobrevibacter smithii" }
                               ]
                             }
                           ]
@@ -488,272 +313,18 @@
                   ]
                 },
                 {
-                  name: "Class Aves",
+                  name: "Halobacteria",
                   orders: [
                     {
-                      name: "Order Accipitriformes",
+                      name: "Halobacteriales",
                       families: [
                         {
-                          name: "Family Accipitridae",
+                          name: "Halobacteriaceae",
                           genera: [
                             {
-                              name: "Genus Haliaeetus",
+                              name: "Halobacterium",
                               species: [
-                                { name: "Species Haliaeetus leucocephalus", file: "bald_eagle.txt", wikiQuery: "Bald eagle" }
-                              ]
-                            },
-                            {
-                              name: "Genus Aquila",
-                              species: [
-                                { name: "Species Aquila chrysaetos", file: "golden_eagle.txt", wikiQuery: "Golden eagle" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Strigiformes",
-                      families: [
-                        {
-                          name: "Family Strigidae",
-                          genera: [
-                            {
-                              name: "Genus Bubo",
-                              species: [
-                                { name: "Species Bubo scandiacus", file: "snowy_owl.txt", wikiQuery: "Snowy owl" },
-                                { name: "Species Bubo virginianus", file: "great_horned_owl.txt", wikiQuery: "Great horned owl" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  name: "Class Reptilia",
-                  orders: [
-                    {
-                      name: "Order Squamata",
-                      families: [
-                        {
-                          name: "Family Viperidae",
-                          genera: [
-                            {
-                              name: "Genus Crotalus",
-                              species: [
-                                { name: "Species Crotalus atrox", file: "rattlesnake.txt", wikiQuery: "Western diamondback rattlesnake" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Varanidae",
-                          genera: [
-                            {
-                              name: "Genus Varanus",
-                              species: [
-                                { name: "Species Varanus komodoensis", file: "komodo_dragon.txt", wikiQuery: "Komodo dragon" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Crocodilia",
-                      families: [
-                        {
-                          name: "Family Crocodylidae",
-                          genera: [
-                            {
-                              name: "Genus Crocodylus",
-                              species: [
-                                { name: "Species Crocodylus niloticus", file: "nile_crocodile.txt", wikiQuery: "Nile crocodile" },
-                                { name: "Species Crocodylus porosus", file: "saltwater_crocodile.txt", wikiQuery: "Saltwater crocodile" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              name: "Phylum Arthropoda",
-              classes: [
-                {
-                  name: "Class Insecta",
-                  orders: [
-                    {
-                      name: "Order Coleoptera",
-                      families: [
-                        {
-                          name: "Family Scarabaeidae",
-                          genera: [
-                            {
-                              name: "Genus Scarabaeus",
-                              species: [
-                                { name: "Species Scarabaeus sacer", file: "sacred_scarab.txt", wikiQuery: "Scarabaeus sacer" }
-                              ]
-                            },
-                            {
-                              name: "Genus Dynastes",
-                              species: [
-                                { name: "Species Dynastes hercules", file: "hercules_beetle.txt", wikiQuery: "Hercules beetle" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Coccinellidae",
-                          genera: [
-                            {
-                              name: "Genus Coccinella",
-                              species: [
-                                { name: "Species Coccinella septempunctata", file: "ladybug.txt", wikiQuery: "Coccinella septempunctata" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Hymenoptera",
-                      families: [
-                        {
-                          name: "Family Apidae",
-                          genera: [
-                            {
-                              name: "Genus Apis",
-                              species: [
-                                { name: "Species Apis mellifera", file: "western_honey_bee.txt", wikiQuery: "Western honey bee" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Formicidae",
-                          genera: [
-                            {
-                              name: "Genus Solenopsis",
-                              species: [
-                                { name: "Species Solenopsis invicta", file: "red_fire_ant.txt", wikiQuery: "Red imported fire ant" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Lepidoptera",
-                      families: [
-                        {
-                          name: "Family Nymphalidae",
-                          genera: [
-                            {
-                              name: "Genus Danaus",
-                              species: [
-                                { name: "Species Danaus plexippus", file: "monarch_butterfly.txt", wikiQuery: "Monarch butterfly" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  name: "Class Arachnida",
-                  orders: [
-                    {
-                      name: "Order Araneae",
-                      families: [
-                        {
-                          name: "Family Theridiidae",
-                          genera: [
-                            {
-                              name: "Genus Latrodectus",
-                              species: [
-                                { name: "Species Latrodectus mactans", file: "black_widow.txt", wikiQuery: "Latrodectus mactans" }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          name: "Family Theraphosidae",
-                          genera: [
-                            {
-                              name: "Genus Theraphosa",
-                              species: [
-                                { name: "Species Theraphosa blondi", file: "goliath_birdeater.txt", wikiQuery: "Goliath birdeater" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Scorpiones",
-                      families: [
-                        {
-                          name: "Family Buthidae",
-                          genera: [
-                            {
-                              name: "Genus Androctonus",
-                              species: [
-                                { name: "Species Androctonus australis", file: "fattail_scorpion.txt", wikiQuery: "Androctonus australis" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              name: "Phylum Mollusca",
-              classes: [
-                {
-                  name: "Class Cephalopoda",
-                  orders: [
-                    {
-                      name: "Order Octopoda",
-                      families: [
-                        {
-                          name: "Family Octopodidae",
-                          genera: [
-                            {
-                              name: "Genus Octopus",
-                              species: [
-                                { name: "Species Octopus vulgaris", file: "common_octopus.txt", wikiQuery: "Common octopus" }
-                              ]
-                            },
-                            {
-                              name: "Genus Hapalochlaena",
-                              species: [
-                                { name: "Species Hapalochlaena lunulata", file: "blue_ringed_octopus.txt", wikiQuery: "Blue-ringed octopus" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Teuthida",
-                      families: [
-                        {
-                          name: "Family Architeuthidae",
-                          genera: [
-                            {
-                              name: "Genus Architeuthis",
-                              species: [
-                                { name: "Species Architeuthis dux", file: "giant_squid.txt", wikiQuery: "Giant squid" }
+                                { name: "salinarum", file: "extreme_halophile.txt", wikiQuery: "Halobacterium salinarum" }
                               ]
                             }
                           ]
@@ -767,64 +338,30 @@
           ]
         },
         {
-          name: "Kingdom Plantae",
+          name: "Bacteria",
           phyla: [
             {
-              name: "Phylum Tracheophyta",
+              name: "Pseudomonadota",
               classes: [
                 {
-                  name: "Class Magnoliopsida",
+                  name: "Gammaproteobacteria",
                   orders: [
                     {
-                      name: "Order Rosales",
+                      name: "Enterobacterales",
                       families: [
                         {
-                          name: "Family Rosaceae",
+                          name: "Enterobacteriaceae",
                           genera: [
                             {
-                              name: "Genus Rosa",
+                              name: "Escherichia",
                               species: [
-                                { name: "Species Rosa gallica", file: "french_rose.txt", wikiQuery: "Rosa gallica" }
+                                { name: "coli", file: "e_coli.txt", wikiQuery: "Escherichia coli" }
                               ]
                             },
                             {
-                              name: "Genus Malus",
+                              name: "Salmonella",
                               species: [
-                                { name: "Species Malus domestica", file: "apple_tree.txt", wikiQuery: "Apple" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Solanales",
-                      families: [
-                        {
-                          name: "Family Solanaceae",
-                          genera: [
-                            {
-                              name: "Genus Solanum",
-                              species: [
-                                { name: "Species Solanum lycopersicum", file: "tomato.txt", wikiQuery: "Tomato" },
-                                { name: "Species Solanum tuberosum", file: "potato.txt", wikiQuery: "Potato" }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      name: "Order Fagales",
-                      families: [
-                        {
-                          name: "Family Fagaceae",
-                          genera: [
-                            {
-                              name: "Genus Quercus",
-                              species: [
-                                { name: "Species Quercus robur", file: "english_oak.txt", wikiQuery: "Quercus robur" },
-                                { name: "Species Quercus alba", file: "white_oak.txt", wikiQuery: "Quercus alba" }
+                                { name: "enterica", file: "salmonella.txt", wikiQuery: "Salmonella enterica" }
                               ]
                             }
                           ]
@@ -832,31 +369,63 @@
                       ]
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              name: "Bacillota",
+              classes: [
                 {
-                  name: "Class Pinopsida",
+                  name: "Bacilli",
                   orders: [
                     {
-                      name: "Order Pinales",
+                      name: "Bacillales",
                       families: [
                         {
-                          name: "Family Pinaceae",
+                          name: "Bacillaceae",
                           genera: [
                             {
-                              name: "Genus Pinus",
+                              name: "Bacillus",
                               species: [
-                                { name: "Species Pinus sylvestris", file: "scots_pine.txt", wikiQuery: "Scots pine" }
+                                { name: "anthracis", file: "anthrax_bacillus.txt", wikiQuery: "Bacillus anthracis" },
+                                { name: "subtilis", file: "hay_bacillus.txt", wikiQuery: "Bacillus subtilis" }
                               ]
                             }
                           ]
                         },
                         {
-                          name: "Family Cupressaceae",
+                          name: "Staphylococcaceae",
                           genera: [
                             {
-                              name: "Genus Sequoiadendron",
+                              name: "Staphylococcus",
                               species: [
-                                { name: "Species Sequoiadendron giganteum", file: "giant_sequoia.txt", wikiQuery: "Sequoiadendron giganteum" }
+                                { name: "aureus", file: "golden_staph.txt", wikiQuery: "Staphylococcus aureus" }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Cyanobacteriota",
+              classes: [
+                {
+                  name: "Cyanophyceae",
+                  orders: [
+                    {
+                      name: "Nostocales",
+                      families: [
+                        {
+                          name: "Nostocaceae",
+                          genera: [
+                            {
+                              name: "Anabaena",
+                              species: [
+                                { name: "variabilis", file: "blue_green_algae.txt", wikiQuery: "Anabaena variabilis" }
                               ]
                             }
                           ]
@@ -870,36 +439,479 @@
           ]
         },
         {
-          name: "Kingdom Fungi",
-          phyla: [
+          name: "Eukaryota",
+          kingdoms: [
             {
-              name: "Phylum Basidiomycota",
-              classes: [
+              name: "Animalia",
+              phyla: [
                 {
-                  name: "Class Agaricomycetes",
-                  orders: [
+                  name: "Chordata",
+                  classes: [
                     {
-                      name: "Order Agaricales",
-                      families: [
+                      name: "Mammalia",
+                      orders: [
                         {
-                          name: "Family Agaricaceae",
-                          genera: [
+                          name: "Primates",
+                          families: [
                             {
-                              name: "Genus Agaricus",
-                              species: [
-                                { name: "Species Agaricus bisporus", file: "button_mushroom.txt", wikiQuery: "Agaricus bisporus" }
+                              name: "Hominidae",
+                              genera: [
+                                {
+                                  name: "Homo",
+                                  species: [
+                                    { name: "sapiens", file: "human.txt", wikiQuery: "Human", isTarget: true },
+                                    { name: "neanderthalensis", file: "neanderthal.txt", wikiQuery: "Neanderthal" },
+                                    { name: "erectus", file: "upright_man.txt", wikiQuery: "Homo erectus" },
+                                    { name: "habilis", file: "handy_man.txt", wikiQuery: "Homo habilis" }
+                                  ]
+                                },
+                                {
+                                  name: "Pan",
+                                  species: [
+                                    { name: "troglodytes", file: "chimpanzee.txt", wikiQuery: "Chimpanzee" },
+                                    { name: "paniscus", file: "bonobo.txt", wikiQuery: "Bonobo" }
+                                  ]
+                                },
+                                {
+                                  name: "Gorilla",
+                                  species: [
+                                    { name: "gorilla", file: "western_gorilla.txt", wikiQuery: "Western gorilla" },
+                                    { name: "beringei", file: "eastern_gorilla.txt", wikiQuery: "Eastern gorilla" }
+                                  ]
+                                },
+                                {
+                                  name: "Pongo",
+                                  species: [
+                                    { name: "pygmaeus", file: "bornean_orangutan.txt", wikiQuery: "Bornean orangutan" },
+                                    { name: "abelii", file: "sumatran_orangutan.txt", wikiQuery: "Sumatran orangutan" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Cercopithecidae",
+                              genera: [
+                                {
+                                  name: "Macaca",
+                                  species: [
+                                    { name: "mulatta", file: "rhesus_macaque.txt", wikiQuery: "Rhesus macaque" },
+                                    { name: "fascicularis", file: "crab_eating_macaque.txt", wikiQuery: "Crab-eating macaque" }
+                                  ]
+                                },
+                                {
+                                  name: "Papio",
+                                  species: [
+                                    { name: "anubis", file: "olive_baboon.txt", wikiQuery: "Olive baboon" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Lemuridae",
+                              genera: [
+                                {
+                                  name: "Lemur",
+                                  species: [
+                                    { name: "catta", file: "ring_tailed_lemur.txt", wikiQuery: "Ring-tailed lemur" }
+                                  ]
+                                }
                               ]
                             }
                           ]
                         },
                         {
-                          name: "Family Amanitaceae",
-                          genera: [
+                          name: "Carnivora",
+                          families: [
                             {
-                              name: "Genus Amanita",
-                              species: [
-                                { name: "Species Amanita muscaria", file: "fly_agaric.txt", wikiQuery: "Amanita muscaria" },
-                                { name: "Species Amanita phalloides", file: "death_cap.txt", wikiQuery: "Amanita phalloides" }
+                              name: "Felidae",
+                              genera: [
+                                {
+                                  name: "Panthera",
+                                  species: [
+                                    { name: "leo", file: "lion.txt", wikiQuery: "Lion" },
+                                    { name: "tigris", file: "tiger.txt", wikiQuery: "Tiger" },
+                                    { name: "onca", file: "jaguar.txt", wikiQuery: "Jaguar" }
+                                  ]
+                                },
+                                {
+                                  name: "Felis",
+                                  species: [
+                                    { name: "catus", file: "house_cat.txt", wikiQuery: "Cat" },
+                                    { name: "silvestris", file: "wildcat.txt", wikiQuery: "European wildcat" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Canidae",
+                              genera: [
+                                {
+                                  name: "Canis",
+                                  species: [
+                                    { name: "lupus", file: "wolf.txt", wikiQuery: "Wolf" },
+                                    { name: "latrans", file: "coyote.txt", wikiQuery: "Coyote" }
+                                  ]
+                                },
+                                {
+                                  name: "Vulpes",
+                                  species: [
+                                    { name: "vulpes", file: "red_fox.txt", wikiQuery: "Red fox" },
+                                    { name: "lagopus", file: "arctic_fox.txt", wikiQuery: "Arctic fox" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Ursidae",
+                              genera: [
+                                {
+                                  name: "Ursus",
+                                  species: [
+                                    { name: "arctos", file: "brown_bear.txt", wikiQuery: "Brown bear" },
+                                    { name: "maritimus", file: "polar_bear.txt", wikiQuery: "Polar bear" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Cetacea",
+                          families: [
+                            {
+                              name: "Balaenopteridae",
+                              genera: [
+                                {
+                                  name: "Balaenoptera",
+                                  species: [
+                                    { name: "musculus", file: "blue_whale.txt", wikiQuery: "Blue whale" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Delphinidae",
+                              genera: [
+                                {
+                                  name: "Orcinus",
+                                  species: [
+                                    { name: "orca", file: "killer_whale.txt", wikiQuery: "Orca" }
+                                  ]
+                                },
+                                {
+                                  name: "Tursiops",
+                                  species: [
+                                    { name: "truncatus", file: "bottlenose_dolphin.txt", wikiQuery: "Common bottlenose dolphin" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Rodentia",
+                          families: [
+                            {
+                              name: "Muridae",
+                              genera: [
+                                {
+                                  name: "Mus",
+                                  species: [
+                                    { name: "musculus", file: "house_mouse.txt", wikiQuery: "House mouse" }
+                                  ]
+                                },
+                                {
+                                  name: "Rattus",
+                                  species: [
+                                    { name: "norvegicus", file: "brown_rat.txt", wikiQuery: "Brown rat" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Sciuridae",
+                              genera: [
+                                {
+                                  name: "Sciurus",
+                                  species: [
+                                    { name: "carolinensis", file: "gray_squirrel.txt", wikiQuery: "Eastern gray squirrel" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Aves",
+                      orders: [
+                        {
+                          name: "Accipitriformes",
+                          families: [
+                            {
+                              name: "Accipitridae",
+                              genera: [
+                                {
+                                  name: "Haliaeetus",
+                                  species: [
+                                    { name: "leucocephalus", file: "bald_eagle.txt", wikiQuery: "Bald eagle" }
+                                  ]
+                                },
+                                {
+                                  name: "Aquila",
+                                  species: [
+                                    { name: "chrysaetos", file: "golden_eagle.txt", wikiQuery: "Golden eagle" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Strigiformes",
+                          families: [
+                            {
+                              name: "Strigidae",
+                              genera: [
+                                {
+                                  name: "Bubo",
+                                  species: [
+                                    { name: "scandiacus", file: "snowy_owl.txt", wikiQuery: "Snowy owl" },
+                                    { name: "virginianus", file: "great_horned_owl.txt", wikiQuery: "Great horned owl" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Reptilia",
+                      orders: [
+                        {
+                          name: "Squamata",
+                          families: [
+                            {
+                              name: "Viperidae",
+                              genera: [
+                                {
+                                  name: "Crotalus",
+                                  species: [
+                                    { name: "atrox", file: "rattlesnake.txt", wikiQuery: "Western diamondback rattlesnake" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Varanidae",
+                              genera: [
+                                {
+                                  name: "Varanus",
+                                  species: [
+                                    { name: "komodoensis", file: "komodo_dragon.txt", wikiQuery: "Komodo dragon" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Crocodilia",
+                          families: [
+                            {
+                              name: "Crocodylidae",
+                              genera: [
+                                {
+                                  name: "Crocodylus",
+                                  species: [
+                                    { name: "niloticus", file: "nile_crocodile.txt", wikiQuery: "Nile crocodile" },
+                                    { name: "porosus", file: "saltwater_crocodile.txt", wikiQuery: "Saltwater crocodile" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Arthropoda",
+                  classes: [
+                    {
+                      name: "Insecta",
+                      orders: [
+                        {
+                          name: "Coleoptera",
+                          families: [
+                            {
+                              name: "Scarabaeidae",
+                              genera: [
+                                {
+                                  name: "Scarabaeus",
+                                  species: [
+                                    { name: "sacer", file: "sacred_scarab.txt", wikiQuery: "Scarabaeus sacer" }
+                                  ]
+                                },
+                                {
+                                  name: "Dynastes",
+                                  species: [
+                                    { name: "hercules", file: "hercules_beetle.txt", wikiQuery: "Hercules beetle" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Coccinellidae",
+                              genera: [
+                                {
+                                  name: "Coccinella",
+                                  species: [
+                                    { name: "septempunctata", file: "ladybird.txt", wikiQuery: "Coccinella septempunctata" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Hymenoptera",
+                          families: [
+                            {
+                              name: "Apidae",
+                              genera: [
+                                {
+                                  name: "Apis",
+                                  species: [
+                                    { name: "mellifera", file: "western_honey_bee.txt", wikiQuery: "Western honey bee" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Formicidae",
+                              genera: [
+                                {
+                                  name: "Solenopsis",
+                                  species: [
+                                    { name: "invicta", file: "red_fire_ant.txt", wikiQuery: "Red imported fire ant" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Lepidoptera",
+                          families: [
+                            {
+                              name: "Nymphalidae",
+                              genera: [
+                                {
+                                  name: "Danaus",
+                                  species: [
+                                    { name: "plexippus", file: "monarch_butterfly.txt", wikiQuery: "Monarch butterfly" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Arachnida",
+                      orders: [
+                        {
+                          name: "Araneae",
+                          families: [
+                            {
+                              name: "Theridiidae",
+                              genera: [
+                                {
+                                  name: "Latrodectus",
+                                  species: [
+                                    { name: "mactans", file: "black_widow.txt", wikiQuery: "Latrodectus mactans" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Theraphosidae",
+                              genera: [
+                                {
+                                  name: "Theraphosa",
+                                  species: [
+                                    { name: "blondi", file: "goliath_birdeater.txt", wikiQuery: "Goliath birdeater" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Scorpiones",
+                          families: [
+                            {
+                              name: "Buthidae",
+                              genera: [
+                                {
+                                  name: "Androctonus",
+                                  species: [
+                                    { name: "australis", file: "fattail_scorpion.txt", wikiQuery: "Androctonus australis" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Mollusca",
+                  classes: [
+                    {
+                      name: "Cephalopoda",
+                      orders: [
+                        {
+                          name: "Octopoda",
+                          families: [
+                            {
+                              name: "Octopodidae",
+                              genera: [
+                                {
+                                  name: "Octopus",
+                                  species: [
+                                    { name: "vulgaris", file: "common_octopus.txt", wikiQuery: "Common octopus" }
+                                  ]
+                                },
+                                {
+                                  name: "Hapalochlaena",
+                                  species: [
+                                    { name: "lunulata", file: "blue_ringed_octopus.txt", wikiQuery: "Blue-ringed octopus" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Teuthida",
+                          families: [
+                            {
+                              name: "Architeuthidae",
+                              genera: [
+                                {
+                                  name: "Architeuthis",
+                                  species: [
+                                    { name: "dux", file: "giant_squid.txt", wikiQuery: "Giant squid" }
+                                  ]
+                                }
                               ]
                             }
                           ]
@@ -911,21 +923,167 @@
               ]
             },
             {
-              name: "Phylum Ascomycota",
-              classes: [
+              name: "Plantae",
+              phyla: [
                 {
-                  name: "Class Saccharomycetes",
-                  orders: [
+                  name: "Tracheophyta",
+                  classes: [
                     {
-                      name: "Order Saccharomycetales",
-                      families: [
+                      name: "Magnoliopsida",
+                      orders: [
                         {
-                          name: "Family Saccharomycetaceae",
-                          genera: [
+                          name: "Rosales",
+                          families: [
                             {
-                              name: "Genus Saccharomyces",
-                              species: [
-                                { name: "Species Saccharomyces cerevisiae", file: "bakers_yeast.txt", wikiQuery: "Saccharomyces cerevisiae" }
+                              name: "Rosaceae",
+                              genera: [
+                                {
+                                  name: "Rosa",
+                                  species: [
+                                    { name: "gallica", file: "french_rose.txt", wikiQuery: "Rosa gallica" }
+                                  ]
+                                },
+                                {
+                                  name: "Malus",
+                                  species: [
+                                    { name: "domestica", file: "apple.txt", wikiQuery: "Apple" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Solanales",
+                          families: [
+                            {
+                              name: "Solanaceae",
+                              genera: [
+                                {
+                                  name: "Solanum",
+                                  species: [
+                                    { name: "lycopersicum", file: "tomato.txt", wikiQuery: "Tomato" },
+                                    { name: "tuberosum", file: "potato.txt", wikiQuery: "Potato" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: "Fagales",
+                          families: [
+                            {
+                              name: "Fagaceae",
+                              genera: [
+                                {
+                                  name: "Quercus",
+                                  species: [
+                                    { name: "robur", file: "english_oak.txt", wikiQuery: "Quercus robur" },
+                                    { name: "alba", file: "white_oak.txt", wikiQuery: "Quercus alba" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      name: "Pinopsida",
+                      orders: [
+                        {
+                          name: "Pinales",
+                          families: [
+                            {
+                              name: "Pinaceae",
+                              genera: [
+                                {
+                                  name: "Pinus",
+                                  species: [
+                                    { name: "sylvestris", file: "scots_pine.txt", wikiQuery: "Scots pine" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Cupressaceae",
+                              genera: [
+                                {
+                                  name: "Sequoiadendron",
+                                  species: [
+                                    { name: "giganteum", file: "giant_sequoia.txt", wikiQuery: "Sequoiadendron giganteum" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Fungi",
+              phyla: [
+                {
+                  name: "Basidiomycota",
+                  classes: [
+                    {
+                      name: "Agaricomycetes",
+                      orders: [
+                        {
+                          name: "Agaricales",
+                          families: [
+                            {
+                              name: "Agaricaceae",
+                              genera: [
+                                {
+                                  name: "Agaricus",
+                                  species: [
+                                    { name: "bisporus", file: "button_mushroom.txt", wikiQuery: "Agaricus bisporus" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              name: "Amanitaceae",
+                              genera: [
+                                {
+                                  name: "Amanita",
+                                  species: [
+                                    { name: "muscaria", file: "fly_agaric.txt", wikiQuery: "Amanita muscaria" },
+                                    { name: "phalloides", file: "death_cap.txt", wikiQuery: "Amanita phalloides" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Ascomycota",
+                  classes: [
+                    {
+                      name: "Saccharomycetes",
+                      orders: [
+                        {
+                          name: "Saccharomycetales",
+                          families: [
+                            {
+                              name: "Saccharomycetaceae",
+                              genera: [
+                                {
+                                  name: "Saccharomyces",
+                                  species: [
+                                    { name: "cerevisiae", file: "bakers_yeast.txt", wikiQuery: "Saccharomyces cerevisiae" }
+                                  ]
+                                }
                               ]
                             }
                           ]
@@ -945,7 +1103,7 @@
       function parseNode(node) {
         const item = { name: node.name, type: "folder", children: [] };
         
-        const keys = ["kingdoms", "phyla", "classes", "orders", "families", "genera"];
+        const keys = ["domains", "kingdoms", "phyla", "classes", "orders", "families", "genera"];
         let nextKey = keys.find(k => node[k]);
 
         if (nextKey) {
@@ -1057,7 +1215,7 @@
         let textOutput = "";
         if (file.isTarget) {
           textOutput += ">>> 🎯 WIN CONDITION TRIGGERED! 🎯 <<<\n";
-          textOutput += "Lineage: Eukaryota -> Animalia -> Chordata -> Mammalia -> Primates -> Hominidae -> Homo -> Homo sapiens\n";
+          textOutput += "Lineage: Archaea / Bacteria / Eukaryota -> Eukaryota -> Animalia -> Chordata -> Mammalia -> Primates -> Hominidae -> Homo -> sapiens\n";
           textOutput += "--------------------------------------------------\n\n";
         }
 
