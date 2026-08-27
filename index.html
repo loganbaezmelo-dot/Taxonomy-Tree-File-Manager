@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxonomy Explorer - Massive Edition</title>
+  <title>Taxonomy Explorer - Wikipedia Edition</title>
   <style>
     :root {
       --bg: #11111b;
@@ -171,16 +171,46 @@
       background: var(--panel);
       border: 1px solid var(--accent);
       border-radius: 12px;
-      max-width: 520px;
+      max-width: 650px;
       width: 90%;
       padding: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      max-height: 85vh;
     }
 
     .modal-title {
       font-size: 1.3rem;
       color: var(--accent);
       margin-bottom: 12px;
+    }
+
+    .wiki-preview {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+      background: #11111b;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .wiki-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .wiki-meta {
+      font-size: 0.85rem;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .modal-content {
@@ -193,8 +223,23 @@
       line-height: 1.45;
       margin-bottom: 18px;
       white-space: pre-wrap;
-      max-height: 280px;
       overflow-y: auto;
+      flex-grow: 1;
+      user-select: text;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--accent);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -207,7 +252,7 @@
         <div class="dot dot-yellow"></div>
         <div class="dot dot-green"></div>
       </div>
-      <div style="font-size: 0.8rem; color: var(--muted);">Massive Tree of Life File Manager</div>
+      <div style="font-size: 0.8rem; color: var(--muted);">Tree of Life Explorer - Live Wikipedia Integration</div>
       <div></div>
     </div>
 
@@ -222,6 +267,13 @@
   <div id="modal" class="modal">
     <div class="modal-box">
       <div id="modalTitle" class="modal-title">File Inspector</div>
+      <div id="wikiHeader" class="wiki-preview" style="display: none;">
+        <img id="wikiImg" class="wiki-img" src="" alt="Thumbnail" />
+        <div class="wiki-meta">
+          <strong id="wikiHeading" style="color: var(--accent);"></strong>
+          <span id="wikiDescription" style="color: var(--muted); font-size: 0.75rem;"></span>
+        </div>
+      </div>
       <div id="modalContent" class="modal-content"></div>
       <div style="text-align: right;">
         <button class="btn" style="background: var(--win); color: #11111b;" onclick="closeModal()">Close</button>
@@ -251,31 +303,31 @@
                             {
                               name: "Genus Homo",
                               species: [
-                                { name: "Species Homo sapiens", file: "human.txt", isTarget: true, desc: "YOU WIN! 💀\n\nFull lineage trace:\nDomain: Eukaryota\nKingdom: Animalia\nPhylum: Chordata\nClass: Mammalia\nOrder: Primates\nFamily: Hominidae\nGenus: Homo\nSpecies: Homo sapiens\n\nYou found the human file in the giant taxonomy maze!" },
-                                { name: "Species Homo neanderthalensis", file: "neanderthal.txt", desc: "Extinct archaic humans who lived in Eurasia until about 40,000 years ago 💀." },
-                                { name: "Species Homo erectus", file: "erectus.txt", desc: "Early human species surviving throughout the Pleistocene." },
-                                { name: "Species Homo habilis", file: "habilis.txt", desc: "Handy man - one of the earliest members of the genus Homo." }
+                                { name: "Species Homo sapiens", file: "human.txt", wikiQuery: "Human", isTarget: true },
+                                { name: "Species Homo neanderthalensis", file: "neanderthal.txt", wikiQuery: "Neanderthal" },
+                                { name: "Species Homo erectus", file: "erectus.txt", wikiQuery: "Homo erectus" },
+                                { name: "Species Homo habilis", file: "habilis.txt", wikiQuery: "Homo habilis" }
                               ]
                             },
                             {
                               name: "Genus Pan",
                               species: [
-                                { name: "Species Pan troglodytes", file: "chimpanzee.txt", desc: "Common chimpanzee. Genetically very close to Homo sapiens." },
-                                { name: "Species Pan paniscus", file: "bonobo.txt", desc: "Bonobo ape native to the Congo Basin." }
+                                { name: "Species Pan troglodytes", file: "chimpanzee.txt", wikiQuery: "Chimpanzee" },
+                                { name: "Species Pan paniscus", file: "bonobo.txt", wikiQuery: "Bonobo" }
                               ]
                             },
                             {
                               name: "Genus Gorilla",
                               species: [
-                                { name: "Species Gorilla gorilla", file: "western_gorilla.txt", desc: "Western gorilla inhabiting central Africa." },
-                                { name: "Species Gorilla beringei", file: "eastern_gorilla.txt", desc: "Eastern gorilla including mountain gorillas." }
+                                { name: "Species Gorilla gorilla", file: "western_gorilla.txt", wikiQuery: "Western gorilla" },
+                                { name: "Species Gorilla beringei", file: "eastern_gorilla.txt", wikiQuery: "Eastern gorilla" }
                               ]
                             },
                             {
                               name: "Genus Pongo",
                               species: [
-                                { name: "Species Pongo pygmaeus", file: "bornean_orangutan.txt", desc: "Bornean orangutan native to the island of Borneo." },
-                                { name: "Species Pongo abelii", file: "sumatran_orangutan.txt", desc: "Sumatran orangutan native to Sumatra." }
+                                { name: "Species Pongo pygmaeus", file: "bornean_orangutan.txt", wikiQuery: "Bornean orangutan" },
+                                { name: "Species Pongo abelii", file: "sumatran_orangutan.txt", wikiQuery: "Sumatran orangutan" }
                               ]
                             }
                           ]
@@ -286,14 +338,14 @@
                             {
                               name: "Genus Macaca",
                               species: [
-                                { name: "Species Macaca mulatta", file: "rhesus_macaque.txt", desc: "Rhesus macaque widely used in biological research." },
-                                { name: "Species Macaca fascicularis", file: "crab_eating_macaque.txt", desc: "Long-tailed macaque." }
+                                { name: "Species Macaca mulatta", file: "rhesus_macaque.txt", wikiQuery: "Rhesus macaque" },
+                                { name: "Species Macaca fascicularis", file: "crab_eating_macaque.txt", wikiQuery: "Crab-eating macaque" }
                               ]
                             },
                             {
                               name: "Genus Papio",
                               species: [
-                                { name: "Species Papio anubis", file: "olive_baboon.txt", desc: "Olive baboon found across 25 African countries." }
+                                { name: "Species Papio anubis", file: "olive_baboon.txt", wikiQuery: "Olive baboon" }
                               ]
                             }
                           ]
@@ -304,7 +356,7 @@
                             {
                               name: "Genus Lemur",
                               species: [
-                                { name: "Species Lemur catta", file: "ring_tailed_lemur.txt", desc: "Ring-tailed lemur endemic to Madagascar." }
+                                { name: "Species Lemur catta", file: "ring_tailed_lemur.txt", wikiQuery: "Ring-tailed lemur" }
                               ]
                             }
                           ]
@@ -320,16 +372,16 @@
                             {
                               name: "Genus Panthera",
                               species: [
-                                { name: "Species Panthera leo", file: "lion.txt", desc: "The lion is a large cat of the genus Panthera native to Africa and India." },
-                                { name: "Species Panthera tigris", file: "tiger.txt", desc: "Tiger - largest living cat species." },
-                                { name: "Species Panthera onca", file: "jaguar.txt", desc: "Jaguar - native to the Americas." }
+                                { name: "Species Panthera leo", file: "lion.txt", wikiQuery: "Lion" },
+                                { name: "Species Panthera tigris", file: "tiger.txt", wikiQuery: "Tiger" },
+                                { name: "Species Panthera onca", file: "jaguar.txt", wikiQuery: "Jaguar" }
                               ]
                             },
                             {
                               name: "Genus Felis",
                               species: [
-                                { name: "Species Felis catus", file: "domestic_cat.txt", desc: "Small domesticated carnivorous mammal." },
-                                { name: "Species Felis silvestris", file: "wildcat.txt", desc: "European wildcat." }
+                                { name: "Species Felis catus", file: "domestic_cat.txt", wikiQuery: "Cat" },
+                                { name: "Species Felis silvestris", file: "wildcat.txt", wikiQuery: "European wildcat" }
                               ]
                             }
                           ]
@@ -340,15 +392,15 @@
                             {
                               name: "Genus Canis",
                               species: [
-                                { name: "Species Canis lupus", file: "wolf.txt", desc: "Gray wolf native to Eurasia and North America." },
-                                { name: "Species Canis latrans", file: "coyote.txt", desc: "Coyote native to North America." }
+                                { name: "Species Canis lupus", file: "wolf.txt", wikiQuery: "Wolf" },
+                                { name: "Species Canis latrans", file: "coyote.txt", wikiQuery: "Coyote" }
                               ]
                             },
                             {
                               name: "Genus Vulpes",
                               species: [
-                                { name: "Species Vulpes vulpes", file: "red_fox.txt", desc: "Red fox - largest of the true foxes." },
-                                { name: "Species Vulpes lagopus", file: "arctic_fox.txt", desc: "Arctic fox adapted to frigid environments." }
+                                { name: "Species Vulpes vulpes", file: "red_fox.txt", wikiQuery: "Red fox" },
+                                { name: "Species Vulpes lagopus", file: "arctic_fox.txt", wikiQuery: "Arctic fox" }
                               ]
                             }
                           ]
@@ -359,8 +411,8 @@
                             {
                               name: "Genus Ursus",
                               species: [
-                                { name: "Species Ursus arctos", file: "brown_bear.txt", desc: "Brown bear widely distributed across Eurasia and North America." },
-                                { name: "Species Ursus maritimus", file: "polar_bear.txt", desc: "Hypercarnivorous bear endemic to the Arctic Circle." }
+                                { name: "Species Ursus arctos", file: "brown_bear.txt", wikiQuery: "Brown bear" },
+                                { name: "Species Ursus maritimus", file: "polar_bear.txt", wikiQuery: "Polar bear" }
                               ]
                             }
                           ]
@@ -376,7 +428,7 @@
                             {
                               name: "Genus Balaenoptera",
                               species: [
-                                { name: "Species Balaenoptera musculus", file: "blue_whale.txt", desc: "Blue whale - largest animal known to have ever lived." }
+                                { name: "Species Balaenoptera musculus", file: "blue_whale.txt", wikiQuery: "Blue whale" }
                               ]
                             }
                           ]
@@ -387,13 +439,13 @@
                             {
                               name: "Genus Orcinus",
                               species: [
-                                { name: "Species Orcinus orca", file: "killer_whale.txt", desc: "Orca - apex predator belonging to the dolphin family." }
+                                { name: "Species Orcinus orca", file: "killer_whale.txt", wikiQuery: "Orca" }
                               ]
                             },
                             {
                               name: "Genus Tursiops",
                               species: [
-                                { name: "Species Tursiops truncatus", file: "bottlenose_dolphin.txt", desc: "Common bottlenose dolphin." }
+                                { name: "Species Tursiops truncatus", file: "bottlenose_dolphin.txt", wikiQuery: "Common bottlenose dolphin" }
                               ]
                             }
                           ]
@@ -409,13 +461,13 @@
                             {
                               name: "Genus Mus",
                               species: [
-                                { name: "Species Mus musculus", file: "house_mouse.txt", desc: "House mouse." }
+                                { name: "Species Mus musculus", file: "house_mouse.txt", wikiQuery: "House mouse" }
                               ]
                             },
                             {
                               name: "Genus Rattus",
                               species: [
-                                { name: "Species Rattus norvegicus", file: "brown_rat.txt", desc: "Brown rat / Norway rat." }
+                                { name: "Species Rattus norvegicus", file: "brown_rat.txt", wikiQuery: "Brown rat" }
                               ]
                             }
                           ]
@@ -426,7 +478,7 @@
                             {
                               name: "Genus Sciurus",
                               species: [
-                                { name: "Species Sciurus carolinensis", file: "gray_squirrel.txt", desc: "Eastern gray squirrel." }
+                                { name: "Species Sciurus carolinensis", file: "gray_squirrel.txt", wikiQuery: "Eastern gray squirrel" }
                               ]
                             }
                           ]
@@ -447,13 +499,13 @@
                             {
                               name: "Genus Haliaeetus",
                               species: [
-                                { name: "Species Haliaeetus leucocephalus", file: "bald_eagle.txt", desc: "Bald eagle - sea eagle endemic to North America." }
+                                { name: "Species Haliaeetus leucocephalus", file: "bald_eagle.txt", wikiQuery: "Bald eagle" }
                               ]
                             },
                             {
                               name: "Genus Aquila",
                               species: [
-                                { name: "Species Aquila chrysaetos", file: "golden_eagle.txt", desc: "Golden eagle - agile raptor of the Northern Hemisphere." }
+                                { name: "Species Aquila chrysaetos", file: "golden_eagle.txt", wikiQuery: "Golden eagle" }
                               ]
                             }
                           ]
@@ -469,8 +521,8 @@
                             {
                               name: "Genus Bubo",
                               species: [
-                                { name: "Species Bubo scandiacus", file: "snowy_owl.txt", desc: "Snowy owl native to the Arctic tundra." },
-                                { name: "Species Bubo virginianus", file: "great_horned_owl.txt", desc: "Great horned owl of the Americas." }
+                                { name: "Species Bubo scandiacus", file: "snowy_owl.txt", wikiQuery: "Snowy owl" },
+                                { name: "Species Bubo virginianus", file: "great_horned_owl.txt", wikiQuery: "Great horned owl" }
                               ]
                             }
                           ]
@@ -491,7 +543,7 @@
                             {
                               name: "Genus Crotalus",
                               species: [
-                                { name: "Species Crotalus atrox", file: "rattlesnake.txt", desc: "Western diamondback rattlesnake." }
+                                { name: "Species Crotalus atrox", file: "rattlesnake.txt", wikiQuery: "Western diamondback rattlesnake" }
                               ]
                             }
                           ]
@@ -502,7 +554,7 @@
                             {
                               name: "Genus Varanus",
                               species: [
-                                { name: "Species Varanus komodoensis", file: "komodo_dragon.txt", desc: "Komodo dragon - largest living lizard." }
+                                { name: "Species Varanus komodoensis", file: "komodo_dragon.txt", wikiQuery: "Komodo dragon" }
                               ]
                             }
                           ]
@@ -518,8 +570,8 @@
                             {
                               name: "Genus Crocodylus",
                               species: [
-                                { name: "Species Crocodylus niloticus", file: "nile_crocodile.txt", desc: "Nile crocodile." },
-                                { name: "Species Crocodylus porosus", file: "saltwater_crocodile.txt", desc: "Saltwater crocodile - largest living reptile." }
+                                { name: "Species Crocodylus niloticus", file: "nile_crocodile.txt", wikiQuery: "Nile crocodile" },
+                                { name: "Species Crocodylus porosus", file: "saltwater_crocodile.txt", wikiQuery: "Saltwater crocodile" }
                               ]
                             }
                           ]
@@ -545,13 +597,13 @@
                             {
                               name: "Genus Scarabaeus",
                               species: [
-                                { name: "Species Scarabaeus sacer", file: "sacred_scarab.txt", desc: "Sacred dung beetle revered in Ancient Egypt." }
+                                { name: "Species Scarabaeus sacer", file: "sacred_scarab.txt", wikiQuery: "Scarabaeus sacer" }
                               ]
                             },
                             {
                               name: "Genus Dynastes",
                               species: [
-                                { name: "Species Dynastes hercules", file: "hercules_beetle.txt", desc: "Hercules beetle famous for its immense horn structure." }
+                                { name: "Species Dynastes hercules", file: "hercules_beetle.txt", wikiQuery: "Hercules beetle" }
                               ]
                             }
                           ]
@@ -562,7 +614,7 @@
                             {
                               name: "Genus Coccinella",
                               species: [
-                                { name: "Species Coccinella septempunctata", file: "ladybug.txt", desc: "Seven-spot ladybird." }
+                                { name: "Species Coccinella septempunctata", file: "ladybug.txt", wikiQuery: "Coccinella septempunctata" }
                               ]
                             }
                           ]
@@ -578,7 +630,7 @@
                             {
                               name: "Genus Apis",
                               species: [
-                                { name: "Species Apis mellifera", file: "western_honey_bee.txt", desc: "Western honey bee - premier pollinator species." }
+                                { name: "Species Apis mellifera", file: "western_honey_bee.txt", wikiQuery: "Western honey bee" }
                               ]
                             }
                           ]
@@ -589,7 +641,7 @@
                             {
                               name: "Genus Solenopsis",
                               species: [
-                                { name: "Species Solenopsis invicta", file: "red_fire_ant.txt", desc: "Red imported fire ant with aggressive sting." }
+                                { name: "Species Solenopsis invicta", file: "red_fire_ant.txt", wikiQuery: "Red imported fire ant" }
                               ]
                             }
                           ]
@@ -605,7 +657,7 @@
                             {
                               name: "Genus Danaus",
                               species: [
-                                { name: "Species Danaus plexippus", file: "monarch_butterfly.txt", desc: "Monarch butterfly known for long-distance migration." }
+                                { name: "Species Danaus plexippus", file: "monarch_butterfly.txt", wikiQuery: "Monarch butterfly" }
                               ]
                             }
                           ]
@@ -626,7 +678,7 @@
                             {
                               name: "Genus Latrodectus",
                               species: [
-                                { name: "Species Latrodectus mactans", file: "black_widow.txt", desc: "Southern black widow spider containing latrotoxin." }
+                                { name: "Species Latrodectus mactans", file: "black_widow.txt", wikiQuery: "Latrodectus mactans" }
                               ]
                             }
                           ]
@@ -637,7 +689,7 @@
                             {
                               name: "Genus Theraphosa",
                               species: [
-                                { name: "Species Theraphosa blondi", file: "goliath_birdeater.txt", desc: "Goliath birdeater - largest spider by mass." }
+                                { name: "Species Theraphosa blondi", file: "goliath_birdeater.txt", wikiQuery: "Goliath birdeater" }
                               ]
                             }
                           ]
@@ -653,7 +705,7 @@
                             {
                               name: "Genus Androctonus",
                               species: [
-                                { name: "Species Androctonus australis", file: "fattail_scorpion.txt", desc: "Fattail scorpion - highly venomous desert scorpion." }
+                                { name: "Species Androctonus australis", file: "fattail_scorpion.txt", wikiQuery: "Androctonus australis" }
                               ]
                             }
                           ]
@@ -679,13 +731,13 @@
                             {
                               name: "Genus Octopus",
                               species: [
-                                { name: "Species Octopus vulgaris", file: "common_octopus.txt", desc: "Common octopus with high cognitive capability." }
+                                { name: "Species Octopus vulgaris", file: "common_octopus.txt", wikiQuery: "Common octopus" }
                               ]
                             },
                             {
                               name: "Genus Hapalochlaena",
                               species: [
-                                { name: "Species Hapalochlaena lunulata", file: "blue_ringed_octopus.txt", desc: "Blue-ringed octopus carrying tetrodotoxin." }
+                                { name: "Species Hapalochlaena lunulata", file: "blue_ringed_octopus.txt", wikiQuery: "Blue-ringed octopus" }
                               ]
                             }
                           ]
@@ -701,7 +753,7 @@
                             {
                               name: "Genus Architeuthis",
                               species: [
-                                { name: "Species Architeuthis dux", file: "giant_squid.txt", desc: "Giant squid dwelling in deep oceanic waters." }
+                                { name: "Species Architeuthis dux", file: "giant_squid.txt", wikiQuery: "Giant squid" }
                               ]
                             }
                           ]
@@ -732,13 +784,13 @@
                             {
                               name: "Genus Rosa",
                               species: [
-                                { name: "Species Rosa gallica", file: "french_rose.txt", desc: "French rose - fragrant flowering shrub." }
+                                { name: "Species Rosa gallica", file: "french_rose.txt", wikiQuery: "Rosa gallica" }
                               ]
                             },
                             {
                               name: "Genus Malus",
                               species: [
-                                { name: "Species Malus domestica", file: "apple_tree.txt", desc: "Domesticated apple tree." }
+                                { name: "Species Malus domestica", file: "apple_tree.txt", wikiQuery: "Apple" }
                               ]
                             }
                           ]
@@ -754,8 +806,8 @@
                             {
                               name: "Genus Solanum",
                               species: [
-                                { name: "Species Solanum lycopersicum", file: "tomato.txt", desc: "Tomato plant." },
-                                { name: "Species Solanum tuberosum", file: "potato.txt", desc: "Potato plant." }
+                                { name: "Species Solanum lycopersicum", file: "tomato.txt", wikiQuery: "Tomato" },
+                                { name: "Species Solanum tuberosum", file: "potato.txt", wikiQuery: "Potato" }
                               ]
                             }
                           ]
@@ -771,8 +823,8 @@
                             {
                               name: "Genus Quercus",
                               species: [
-                                { name: "Species Quercus robur", file: "english_oak.txt", desc: "Pedunculate oak tree." },
-                                { name: "Species Quercus alba", file: "white_oak.txt", desc: "North American white oak." }
+                                { name: "Species Quercus robur", file: "english_oak.txt", wikiQuery: "Quercus robur" },
+                                { name: "Species Quercus alba", file: "white_oak.txt", wikiQuery: "Quercus alba" }
                               ]
                             }
                           ]
@@ -793,7 +845,7 @@
                             {
                               name: "Genus Pinus",
                               species: [
-                                { name: "Species Pinus sylvestris", file: "scots_pine.txt", desc: "Scots pine conifer." }
+                                { name: "Species Pinus sylvestris", file: "scots_pine.txt", wikiQuery: "Scots pine" }
                               ]
                             }
                           ]
@@ -804,7 +856,7 @@
                             {
                               name: "Genus Sequoiadendron",
                               species: [
-                                { name: "Species Sequoiadendron giganteum", file: "giant_sequoia.txt", desc: "Giant sequoia - massive long-lived tree." }
+                                { name: "Species Sequoiadendron giganteum", file: "giant_sequoia.txt", wikiQuery: "Sequoiadendron giganteum" }
                               ]
                             }
                           ]
@@ -835,7 +887,7 @@
                             {
                               name: "Genus Agaricus",
                               species: [
-                                { name: "Species Agaricus bisporus", file: "button_mushroom.txt", desc: "Common edible button/portobello mushroom." }
+                                { name: "Species Agaricus bisporus", file: "button_mushroom.txt", wikiQuery: "Agaricus bisporus" }
                               ]
                             }
                           ]
@@ -846,8 +898,8 @@
                             {
                               name: "Genus Amanita",
                               species: [
-                                { name: "Species Amanita muscaria", file: "fly_agaric.txt", desc: "Fly agaric - iconic red toadstool with white spots." },
-                                { name: "Species Amanita phalloides", file: "death_cap.txt", desc: "Death cap - deadly toxic poisonous mushroom 💀." }
+                                { name: "Species Amanita muscaria", file: "fly_agaric.txt", wikiQuery: "Amanita muscaria" },
+                                { name: "Species Amanita phalloides", file: "death_cap.txt", wikiQuery: "Amanita phalloides" }
                               ]
                             }
                           ]
@@ -873,7 +925,7 @@
                             {
                               name: "Genus Saccharomyces",
                               species: [
-                                { name: "Species Saccharomyces cerevisiae", file: "bakers_yeast.txt", desc: "Brewer's and baker's yeast." }
+                                { name: "Species Saccharomyces cerevisiae", file: "bakers_yeast.txt", wikiQuery: "Saccharomyces cerevisiae" }
                               ]
                             }
                           ]
@@ -907,7 +959,7 @@
                 {
                   name: sp.file,
                   type: "file",
-                  content: sp.desc,
+                  wikiQuery: sp.wikiQuery,
                   isTarget: !!sp.isTarget
                 }
               ]
@@ -929,6 +981,10 @@
     const modalEl = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const modalContent = document.getElementById("modalContent");
+    const wikiHeader = document.getElementById("wikiHeader");
+    const wikiImg = document.getElementById("wikiImg");
+    const wikiHeading = document.getElementById("wikiHeading");
+    const wikiDescription = document.getElementById("wikiDescription");
 
     function renderView() {
       const current = navStack[navStack.length - 1];
@@ -965,11 +1021,53 @@
       });
     }
 
-    function inspectFile(file) {
-      modalTitle.innerText = file.isTarget ? "🎉 OBJECTIVE FOUND!" : `📄 ${file.name}`;
+    async function fetchWikipediaData(title) {
+      try {
+        const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Article lookup failed");
+        return await res.json();
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function inspectFile(file) {
+      modalTitle.innerText = file.isTarget ? "🎉 OBJECTIVE FOUND: HOMO SAPIENS!" : `📄 ${file.name}`;
       modalTitle.style.color = file.isTarget ? "var(--win)" : "var(--accent)";
-      modalContent.innerText = file.content;
+      
+      wikiHeader.style.display = "none";
+      modalContent.innerHTML = `<div style="display:flex; align-items:center; gap:8px;"><span class="spinner"></span> Querying Wikipedia servers for detailed dossier...</div>`;
       modalEl.classList.add("active");
+
+      const wiki = await fetchWikipediaData(file.wikiQuery);
+
+      if (wiki) {
+        if (wiki.thumbnail && wiki.thumbnail.source) {
+          wikiImg.src = wiki.thumbnail.source;
+          wikiImg.style.display = "block";
+        } else {
+          wikiImg.style.display = "none";
+        }
+
+        wikiHeading.innerText = wiki.title || file.name;
+        wikiDescription.innerText = wiki.description ? `(${wiki.description})` : "Wikipedia Entry";
+        wikiHeader.style.display = "flex";
+
+        let textOutput = "";
+        if (file.isTarget) {
+          textOutput += ">>> 🎯 WIN CONDITION TRIGGERED! 🎯 <<<\n";
+          textOutput += "Lineage: Eukaryota -> Animalia -> Chordata -> Mammalia -> Primates -> Hominidae -> Homo -> Homo sapiens\n";
+          textOutput += "--------------------------------------------------\n\n";
+        }
+
+        textOutput += `[SOURCE: Wikipedia REST API]\n\n${wiki.extract}\n\n`;
+        textOutput += `Full Link: ${wiki.content_urls ? wiki.content_urls.desktop.page : `https://en.wikipedia.org/wiki/${file.wikiQuery}`}`;
+
+        modalContent.innerText = textOutput;
+      } else {
+        modalContent.innerText = `[File: ${file.name}]\n\nFailed to pull Wikipedia extract dynamically. 💀\nSpecies target: ${file.wikiQuery}`;
+      }
     }
 
     function closeModal() {
